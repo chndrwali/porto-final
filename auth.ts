@@ -10,7 +10,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     async signIn({ user }) {
       const existingUser = await getUserById(user.id);
 
-      if (!existingUser) {
+      if (!existingUser || !existingUser.emailVerified) {
         return false;
       }
       return true;
@@ -38,6 +38,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     },
   },
   adapter: PrismaAdapter(prisma),
-  session: { strategy: 'jwt' },
+  session: { strategy: 'jwt', maxAge: 60 * 60, updateAge: 15 * 60 },
   ...authConfig,
 });
