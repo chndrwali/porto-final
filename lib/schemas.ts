@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-export function extractTextFromHTML(html: string) {
+function extractTextFromHTML(html: string) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
   return doc.body.textContent?.trim() || '';
@@ -34,4 +34,37 @@ export const registerSchema = z.object({
   name: z.string().min(1, {
     message: 'Nama harus diisi',
   }),
+});
+
+export const projectSchema = z.object({
+  category: z.enum(['FULLSTACK', 'FRONTEND', 'BACKEND'], {
+    message: 'Kategori harus dipilih',
+  }),
+  techStack: z.array(
+    z.string().min(1, {
+      message: 'techStack harus sipilih, minimal 1!',
+    })
+  ),
+  title: z.string().min(1, 'Judul harus diisi'),
+  description: z.string().min(8, 'Deskripsi minimal 8 karakter'),
+  web: z.string().min(1, 'Web harus diisi'),
+  repository: z.string().optional(),
+  imageOne: z.string().min(1, 'Gambar harus diisi'),
+  imageTwo: z.string().optional(),
+  imageThree: z.string().optional(),
+  imageFour: z.string().optional(),
+  imageFive: z.string().optional(),
+});
+
+export const blogSchema = z.object({
+  title: z.string().min(1, 'Judul harus diisi'),
+  description: z.string().refine(
+    (value) => {
+      return extractTextFromHTML(value).trim().length >= 5;
+    },
+    {
+      message: 'The text must be at least 5 characters long after trimming',
+    }
+  ),
+  createdBy: z.string().min(1, 'Pembuat harus diisi'),
 });

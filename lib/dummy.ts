@@ -1,0 +1,121 @@
+export const projectData = [
+  {
+    image: ['/work/rukunperkasa.webp', '/work/rukunperkasa-1.webp', '/work/rukunperkasa-2.webp', '/work/rukunperkasa-3.webp', '/work/rukunperkasa-4.webp'],
+    category: 'fullstack',
+    name: 'Rukun Perkasa',
+    description:
+      'This project is an e-commerce website that utilizes a variety of tools and frameworks, including MongoDB Atlas for cloud-based database, NextAuth.js for user authentication, Google Cloud Platform as the Google authentication provider, Prisma as the Object Relational Mapping tool, Tailwind CSS for styling framework, Stripe for handling payment processes, and Firebase Storage for saving images. This website is created for facilitating thesis submission.',
+    link: 'https://rukun-perkasa.vercel.app',
+    github: 'https://github.com/chndrwali/RukunPerkasa',
+  },
+  {
+    image: ['/work/rewwis.webp', '/work/rewwis-1.webp', '/work/rewwis-2.webp', '/work/rewwis-3.webp', '/work/rewwis-4.webp'],
+    category: 'react js',
+    name: 'Recycle Waste Wisely',
+    description:
+      'This website is the final project of the Certified Internship and Independent Study at Orbit Future Academy Batch 5. The project is specifically designed for an automated waste classification website. It is built using React Vite for the frontend, Tailwind CSS for styling, and TensorFlow.js for loading data from the model.',
+    link: 'https://rewwis.vercel.app/',
+    github: 'https://github.com/chndrwali/RecycleWasteWisely',
+  },
+  {
+    image: ['/work/togetherboost.webp', '/work/togetherboost-2.webp'],
+    category: 'react js',
+    name: 'TogetherBoost App',
+    description:
+      'This website is the final project of the Certified Internship and Independent Study at Dicoding Indonesia Cycle 4. The project revolves around the theme of "Inclusivity in Education" and is built using React Vite for the frontend, Tailwind CSS as the styling framework, Express.js for the backend, and also incorporates the Redux library.',
+    link: 'https://togetherboost.vercel.app/',
+    github: 'https://github.com/chndrwali/capstone-fe',
+  },
+  {
+    image: ['/work/twitwar.webp', '/work/twitwar-1.webp', '/work/twitwar-2.webp'],
+    category: 'react js',
+    name: 'Twitwar Forum',
+    description:
+      'As a final submission for the "Becoming a React Web Developer Expert" class, this website is constructed using React Vite, Tailwind CSS, and Redux. It effectively harnesses APIs provided by Dicoding Indonesia, showcasing the skills acquired throughout the course.',
+    link: 'https://twitwar-forum.vercel.app/',
+    github: 'https://github.com/chndrwali/twitwar-forum',
+  },
+  {
+    image: ['/work/maskedapp.webp'],
+    category: 'submission',
+    name: 'Masked Apps',
+    description:
+      'This website is created to fulfill the needs of the final semester exam for the Sistem Pakar course at National Pasim University. Creted using Vite, Tailwind CSS, and TensorFlowJS, we emphasize responsiveness, aesthetic design, and code quality. Tailwind CSS provides an intuitive interface, and Eslint guarantees high-quality code.',
+    link: 'https://maskedapp.vercel.app/',
+    github: 'https://github.com/chndrwali/MaskedApps',
+  },
+  {
+    image: ['/work/srym.webp', '/work/srym-1.webp', '/work/srym-2.webp'],
+    category: 'submission',
+    name: 'Srym Store',
+    description:
+      'This website is created to fulfill the needs of the final semester exam for the E-Commerce course at National Pasim University. Utilizing Progressive Web Apps, Tailwind CSS, and Eslint, we emphasize responsiveness, aesthetic design, and code quality. Progressive Web Apps ensure easy access, Tailwind CSS provides an intuitive interface, and Eslint guarantees high-quality code.',
+    link: 'https://srymecommerce.netlify.app/',
+    github: 'https://github.com/chndrwali/WebEcommerce',
+  },
+  {
+    image: ['/work/cwpa.png'],
+    category: 'submission',
+    name: 'Candra Food',
+    description:
+      'As a final submission for the "Becoming a React Web Developer Expert" class, this website is constructed using React Vite, Tailwind CSS, and Redux. It effectively harnesses APIs provided by Dicoding Indonesia, showcasing the skills acquired throughout the course.',
+    link: 'https://candrafood-pwa.vercel.app/',
+    github: 'https://github.com/chndrwali/restaurant-catalogueWPA',
+  },
+  {
+    image: ['/work/klasifikasidicoding.webp'],
+    category: 'submission',
+    name: 'Submission Dicoding',
+    description: 'Successfully trained a dataset of images with 6 classes, achieving an accuracy of 95%, and a validation accuracy of 85%.',
+    link: 'https://candrafood-pwa.vercel.app/',
+    github: 'https://github.com/chndrwali/Submission-ML-3-ImageClassification-Deployment',
+  },
+  {
+    image: ['/work/klasifikasiorbit.webp'],
+    category: 'submission',
+    name: 'Model Image Classification 12 Classes',
+    description: 'Successfully trained a dataset with 12 classes using the MobileNetV2 architecture and converted it into a TensorFlow.js model with an accuracy of 97%.',
+    link: '/projects',
+    github: 'https://github.com/chndrwali/model-klasifikasi-orbit',
+  },
+  {
+    image: ['/work/dicodingkelulusan.webp'],
+    category: 'certificates',
+    name: 'Sertifikat Kelulusan Dicoding',
+    description: 'Successfully completed the Front-End Web and Back-End Training in the Dicoding X Kampus Merdeka Angkatan 3 SIB Program.',
+    link: 'https://www.linkedin.com/in/chndrwali/details/certifications/1635541981815/single-media-viewer/?profileId=ACoAADVInc4B_JHLHqbVHb8NC7oF3-SuA6Oom8k',
+    github: 'https://github.com/chndrwali',
+  },
+  {
+    image: ['/work/alibabasertifikat.webp'],
+    category: 'certificates',
+    name: 'Certified Developer Alibaba Cloud',
+    description: 'Successfully registered as a DevHandal participant and completed the class on creating a blog on the Alibaba-owned AWS Cloud platform.',
+    link: 'https://www.linkedin.com/in/chndrwali/details/certifications/1635548464440/single-media-viewer/?profileId=ACoAADVInc4B_JHLHqbVHb8NC7oF3-SuA6Oom8k',
+    github: 'https://github.com/chndrwali',
+  },
+  {
+    image: ['/work/frontendexpert.webp'],
+    category: 'certificates',
+    name: 'Menjadi Front End Web Developer Expert',
+    description: 'Successfully trained three datasets, namely text classification, time series, and image classification, using Google Colab and several machine learning libraries.',
+    link: 'https://www.dicoding.com/certificates/72ZD8YVQ9ZYW',
+    github: 'https://github.com/chndrwali',
+  },
+  {
+    image: ['/work/reactexpert.webp'],
+    category: 'certificates',
+    name: 'Menjadi React Web Developer Expert',
+    description: 'Successfully trained three datasets, namely text classification, time series, and image classification, using Google Colab and several machine learning libraries.',
+    link: 'https://www.dicoding.com/certificates/MRZMQRYJLPYQ',
+    github: 'https://github.com/chndrwali',
+  },
+  {
+    image: ['/work/machinelearning.webp'],
+    category: 'certificates',
+    name: 'Belajar Pengembangan Machine Learning',
+    description: 'Successfully trained three datasets, namely text classification, time series, and image classification, using Google Colab and several machine learning libraries.',
+    link: 'https://www.dicoding.com/certificates/L4PQQ456VPO1',
+    github: 'https://github.com/chndrwali',
+  },
+];

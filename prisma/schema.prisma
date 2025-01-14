@@ -89,3 +89,67 @@ enum UserRole {
   ADMIN
   USER
 }
+
+model Project {
+  id String @id @default(uuid())
+  category ProjectCategory @default(FULLSTACK)
+  techStack TechStackProject[]
+  title String
+  description String
+  web String
+  repository String?
+  imageOne  String
+  imageTwo String?
+  imageThree String?
+  imageFour String?
+  imageFive String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+}
+
+model TechStackProject {
+  id String @id @default(uuid())
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  projectId String
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade) 
+
+  @@map("tech_stack_project")
+}
+
+model TechStack {
+  id String @id @default(uuid())
+  title String
+  image String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ProjectCategory {
+  FULLSTACK
+  FRONTEND
+  BACKEND
+}
+
+model Skill {
+  id String @id @default(uuid())
+  textOne String?
+  textTwo String?
+  textThree String?
+  textFour String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Blog {
+  id String @id @default(uuid())
+  title String
+  description String @db.Text
+  createdBy String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
