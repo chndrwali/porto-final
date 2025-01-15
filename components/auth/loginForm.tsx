@@ -175,14 +175,14 @@ export const LoginForm = () => {
               'Masuk'
             )}
           </Button>
+          <p className="text-center text-muted text-base font-medium ">
+            Belum punya akun?{' '}
+            <Link href="/sign-up" className="font-bold text-amber-100">
+              Buat akun
+            </Link>
+          </p>
         </form>
       </Form>
-      <p className="text-center text-base font-medium">
-        Belum punya akun?{' '}
-        <Link href="/sign-up" className="font-bold text-primary">
-          Buat akun
-        </Link>
-      </p>
     </div>
   );
 };

@@ -13,6 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { register } from '@/actions/register';
 import { toast } from '@/hooks/use-toast';
 import { CheckCircle, CircleAlert, EyeIcon, EyeOffIcon, LoaderIcon } from 'lucide-react';
+import Link from 'next/link';
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>('');
@@ -194,6 +195,12 @@ export const RegisterForm = () => {
               'Daftar'
             )}
           </Button>
+          <p className="text-center text-muted text-base font-medium ">
+            Sudah punya akun?{' '}
+            <Link href="/sign-in" className="font-bold text-amber-100">
+              Masuk
+            </Link>
+          </p>
         </form>
       </Form>
     </div>

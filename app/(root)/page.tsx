@@ -23,6 +23,15 @@ export default function Home() {
     <>
       <ConfirmDialog />
       <Button onClick={handleLogout}>Logout</Button>{' '}
+      {/* <IKImage
+          path={coverImage}
+          urlEndpoint={config.env.imagekit.urlEndpoint}
+          alt="Book cover"
+          fill
+          className="rounded-sm object-fill"
+          loading="lazy"
+          lqip={{ active: true }}
+        /> */}
     </>
   );
 }

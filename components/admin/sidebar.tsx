@@ -7,23 +7,32 @@ import { cn, getInitials } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { SafeUser } from '@/types';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { ChevronUp, LayoutDashboard } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { LayoutDashboard } from 'lucide-react';
 import { useConfirm } from '@/hooks/use-confirm';
 import { logout } from '@/actions/logout';
 import { toast } from '@/hooks/use-toast';
 
 const Sidebar = ({ currentUser }: { currentUser: SafeUser }) => {
   const pathname = usePathname();
-  const [ConfirmDialog, confirm] = useConfirm('Apakah kamu yakin?', 'Anda akan keluar akun.');
+  const [ConfirmDialog, confirm] = useConfirm('Konfirmasi keluar', 'Apakah Anda yakin ingin keluar dari akun?');
   const handleLogout = async () => {
-    const ok = await confirm();
-    if (ok) {
-      logout();
+    try {
+      const isConfirmed = await confirm();
+      if (isConfirmed) {
+        logout();
+        toast({
+          title: 'Logout Berhasil',
+          description: 'Anda telah berhasil keluar dari akun.',
+          variant: 'success',
+        });
+      }
+    } catch (error) {
+      console.error('Error during logout confirmation:', error);
       toast({
-        title: 'Berhasil',
-        description: 'Berhasil keluar akun',
-        variant: 'success',
+        title: 'Logout Gagal',
+        description: 'Terjadi kesalahan saat mencoba keluar dari akun.',
+        variant: 'destructive',
       });
     }
   };

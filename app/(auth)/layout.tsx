@@ -12,10 +12,6 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
     <main className="relative flex flex-col-reverse sm:flex-row">
       <section className="my-auto flex h-full min-h-screen flex-1 items-center bg-pattern bg-cover bg-top bg-[#16191E] px-5 py-10">
         <div className="gradient-vertical mx-auto flex max-w-xl flex-col gap-6 rounded-lg p-10">
-          {/* <div className="flex flex-row gap-3">
-            <Image src="/icons/logo.svg" alt="logo" width={37} height={37} />
-            <h1 className="text-2xl font-semibold text-white">Portfolio</h1>
-          </div> */}
           <div>{children}</div>
         </div>
       </section>

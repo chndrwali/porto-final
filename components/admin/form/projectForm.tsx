@@ -9,8 +9,15 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { techStack } from '@/lib/constant';
+import FileUpload from '@/components/fileUpload';
+import { createProject } from '@/actions/admin/project';
+import { toast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 const ProjectForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
@@ -29,7 +36,23 @@ const ProjectForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof projectSchema>) => {
-    console.log(values);
+    const result = await createProject(values);
+
+    if (result.success) {
+      toast({
+        title: 'Sukses',
+        description: 'Konten berhasil di buat',
+        variant: 'success',
+      });
+
+      router.push(`/admin/content/${result.data.id}`);
+    } else {
+      toast({
+        title: 'Gagal',
+        description: 'Konten gagal di buat',
+        variant: 'destructive',
+      });
+    }
   };
 
   return (
@@ -88,6 +111,32 @@ const ProjectForm = () => {
         />
         <FormField
           control={form.control}
+          name={'techStack'}
+          render={({ field }) => (
+            <FormItem className="flex flex-col gap-1">
+              <FormLabel className="text-base font-normal ">TechStack</FormLabel>
+              <FormControl>
+                <div className="flex flex-wrap gap-2">
+                  {techStack.map((tech) => (
+                    <div key={tech.label} className="flex items-center gap-2">
+                      <Checkbox
+                        checked={field.value?.includes(tech.label)}
+                        onCheckedChange={(checked) => {
+                          const newValue = checked ? [...(field.value || []), tech.label] : field.value?.filter((item) => item !== tech.label);
+                          field.onChange(newValue);
+                        }}
+                      />
+                      <label className="text-sm">{tech.label}</label>
+                    </div>
+                  ))}
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name={'web'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
@@ -119,7 +168,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 1</FormLabel>
               <FormControl>
-                <Input required type="url" placeholder="Masukan Link Repository" {...field} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -132,7 +181,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 2</FormLabel>
               <FormControl>
-                <Input type="url" placeholder="Masukan Link Repository" {...field} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -145,7 +194,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 3</FormLabel>
               <FormControl>
-                <Input type="url" placeholder="Masukan Link Repository" {...field} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -158,7 +207,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 4</FormLabel>
               <FormControl>
-                <Input type="url" placeholder="Masukan Link Repository" {...field} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -171,7 +220,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 5</FormLabel>
               <FormControl>
-                <Input type="url" placeholder="Masukan Link Repository" {...field} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

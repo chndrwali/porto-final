@@ -1,6 +1,11 @@
 import ProjectForm from '@/components/admin/form/projectForm';
 import { Button } from '@/components/ui/button';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Buat konten',
+};
 
 const Page = () => {
   return (

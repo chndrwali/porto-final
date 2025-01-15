@@ -1,4 +1,9 @@
 import { RegisterForm } from '@/components/auth/registerForm';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Daftar',
+};
 
 const Page = () => {
   return (
