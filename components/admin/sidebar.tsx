@@ -43,7 +43,7 @@ const Sidebar = ({ currentUser }: { currentUser: SafeUser }) => {
       <div>
         <div className="flex flex-row items-center gap-2 border-b border-dashed border-primary/20 pb-10 max-md:justify-center">
           <LayoutDashboard className="size-5" />
-          <h1 className="text-2xl font-semibold text-primary max-md:hidden">Dashboard</h1>
+          <h1 className="text-2xl font-semibold text-primary max-md:hidden">Admin</h1>
         </div>
 
         <div className="mt-10 flex flex-col gap-5">
