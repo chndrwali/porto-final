@@ -7,7 +7,7 @@ import { useConfirm } from '@/hooks/use-confirm';
 import { toast } from '@/hooks/use-toast';
 import { getInitials } from '@/lib/utils';
 import { User } from '@prisma/client';
-import { Trash2 } from 'lucide-react';
+import { LoaderIcon, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import DetailUser from './detailUsers';
 import { deleteUser } from '@/actions/admin/deleteUser';
@@ -73,7 +73,7 @@ const TableUsers = ({ users }: Props) => {
       <ConfirmDialog />
 
       <div className="w-full overflow-hidden border rounded-lg shadow-xs">
-        <div className="w-full overflow-x-auto min-h-[580px]">
+        <div className="w-full overflow-x-auto ">
           <table className="w-full whitespace-no-wrap border-collapse border-gray-300 ">
             <thead>
               <tr className=" bg-gray-200 text-xs font-semibold tracking-wide text-left text-foreground uppercase border-b">
@@ -114,14 +114,13 @@ const TableUsers = ({ users }: Props) => {
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     <div className="flex items-center space-x-4 text-sm">
-                      <Button variant="destructive" onClick={() => handleDeleteUser(row.id)} disabled={isLoading === row.id}>
-                        {isLoading ? (
-                          <div className=" w-5 h-5 border-4 border-transparent border-t-blue-500 rounded-full animate-spin" />
-                        ) : (
+                      <Button variant="destructive" onClick={() => handleDeleteUser(row.id)} disabled={isLoading === row.id} effect="expandIcon" icon={Trash2} iconPlacement="right">
+                        {isLoading === row.id ? (
                           <>
-                            <Trash2 className="mr-2 w-5 h-5" />
-                            Hapus
+                            <LoaderIcon className="size-4 animate-spin" />
                           </>
+                        ) : (
+                          <>Hapus</>
                         )}
                       </Button>
                     </div>
@@ -145,8 +144,8 @@ const TableUsers = ({ users }: Props) => {
                       onClick={() => changePage(index + 1)}
                       className={`${
                         pagination.currentPage === index + 1
-                          ? 'px-3 py-1 text-white transition-colors duration-150 bg-gradientblue border border-r-0 border-gradientblue rounded-md focus:outline-none focus:shadow-outline-purple'
-                          : 'px-3 py-1 transition-colors duration-150 hover:bg-brown-500 hover:text-white rounded-md focus:outline-none focus:shadow-outline-purple'
+                          ? 'px-3 py-1 text-white transition-colors duration-150 bg-blue-400 hover:bg-blue-500 border  rounded-md focus:outline-none focus:shadow-md'
+                          : 'px-3 py-1 transition-colors duration-150 hover:bg-blue-500 hover:text-white rounded-md focus:outline-none focus:shadow-md'
                       }`}
                     >
                       {index + 1}

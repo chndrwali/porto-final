@@ -3,12 +3,15 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { PlusIcon } from 'lucide-react';
 import TableProject from '@/components/admin/table/tableProject';
+import { getProject } from '@/actions/getProject';
 
 export const metadata: Metadata = {
   title: 'Semua proyek',
 };
 
-const Page = () => {
+const Page = async () => {
+  const project = await getProject();
+
   return (
     <section className="w-full rounded-2xl bg-white p-7">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -21,7 +24,7 @@ const Page = () => {
       </div>
 
       <div className="mt-7 w-full overflow-hidden">
-        <TableProject />
+        <TableProject project={project} />
       </div>
     </section>
   );

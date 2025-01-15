@@ -3,7 +3,7 @@
 import { prisma } from '@/lib/db';
 import { getCurrentUser } from '@/actions/getCurrentUser';
 
-export const deleteUser = async (id: string) => {
+export const deleteProject = async (id: string) => {
   // Memeriksa pengguna saat ini
   const currentUser = await getCurrentUser();
 
@@ -19,21 +19,20 @@ export const deleteUser = async (id: string) => {
   }
 
   try {
-    // Menghapus pengguna berdasarkan ID
-    const deletedUser = await prisma.user.delete({
+    const deletedProject = await prisma.project.delete({
       where: { id },
     });
 
     return {
       success: true,
-      data: deletedUser,
+      data: deletedProject,
     };
   } catch (error) {
-    console.error('Error deleting user:', error);
+    console.error('Error deleting project:', error);
 
     return {
       success: false,
-      message: 'An error occurred while deleting the user.',
+      message: 'An error occurred while deleting the project.',
     };
   }
 };

@@ -1,6 +1,3 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { Metadata } from 'next';
 import { getUsers } from '@/actions/admin/getUsers';
 import TableUsers from '@/components/admin/table/tableUsers';
@@ -14,13 +11,8 @@ const Page = async () => {
 
   return (
     <section className="w-full rounded-2xl bg-white p-7">
-      <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center">
         <h2 className="text-xl font-semibold">Semua Pengguna</h2>
-        <Button className="" asChild>
-          <Link href="/admin/books/new" className="text-white">
-            + Create a New Book
-          </Link>
-        </Button>
       </div>
 
       <div className="mt-7 w-full overflow-hidden">
