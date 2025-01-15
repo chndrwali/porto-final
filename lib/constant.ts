@@ -1,3 +1,5 @@
+import { Home, Users, Bookmark, FolderKey } from 'lucide-react';
+
 export const techStack = [
   { label: 'Next.js' },
   { label: 'React' },
@@ -60,22 +62,22 @@ export const navigationLinks = [
 
 export const adminSideBarLinks = [
   {
-    img: '/icons/admin/home.svg',
+    Icon: Home,
     route: '/admin',
     text: 'Beranda',
   },
   {
-    img: '/icons/admin/users.svg',
+    Icon: Users,
     route: '/admin/users',
     text: 'Semua Pengguna',
   },
   {
-    img: '/icons/admin/book.svg',
-    route: '/admin/content',
-    text: 'Semua Konten',
+    Icon: FolderKey,
+    route: '/admin/project',
+    text: 'Semua Proyek',
   },
   {
-    img: '/icons/admin/bookmark.svg',
+    Icon: Bookmark,
     route: '/admin/book-requests',
     text: 'Borrow Requests',
   },

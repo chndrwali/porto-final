@@ -1,4 +1,4 @@
-import { User, UserRole } from '@prisma/client';
+import { Project, TechStackProject, User, UserRole } from '@prisma/client';
 import { type DefaultSession } from 'next-auth';
 
 export type SafeUser = Omit<User, 'createdAt' | 'updatedAt' | 'emailVerified'> & {
@@ -17,3 +17,11 @@ declare module 'next-auth' {
     user: ExtendedUser;
   }
 }
+
+interface ProjectProps {
+  project: ProjectWithTech | null;
+}
+
+export type ProjectWithTech = Project & {
+  techStack: TechStackProject[];
+};

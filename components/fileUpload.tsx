@@ -6,6 +6,7 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { toast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { UploadIcon } from 'lucide-react';
 
 const {
   env: {
@@ -51,9 +52,9 @@ const FileUpload = ({ type, accept, placeholder, folder, variant, onFileChange, 
   const [progress, setProgress] = useState(0);
 
   const styles = {
-    button: variant === 'dark' ? 'bg-dark-300' : 'bg-light-600 border-gray-100 border',
-    placeholder: variant === 'dark' ? 'text-light-100' : 'text-slate-500',
-    text: variant === 'dark' ? 'text-light-100' : 'text-dark-400',
+    button: variant === 'dark' ? 'bg-slate-700' : 'bg-slate-200 border-gray-100 border',
+    placeholder: variant === 'dark' ? 'text-white' : 'text-primary',
+    text: variant === 'dark' ? 'text-white' : 'text-primary',
   };
 
   const onError = (error: any) => {
@@ -121,7 +122,7 @@ const FileUpload = ({ type, accept, placeholder, folder, variant, onFileChange, 
       />
 
       <button
-        className={cn('upload-btn', styles.button)}
+        className={cn('flex flex-col min-h-14 w-full items-center justify-center gap-1.5 rounded-md', styles.button)}
         onClick={(e) => {
           e.preventDefault();
 
@@ -131,11 +132,13 @@ const FileUpload = ({ type, accept, placeholder, folder, variant, onFileChange, 
           }
         }}
       >
-        <Image src="/icons/upload.svg" alt="upload-icon" width={20} height={20} className="object-contain" />
+        <div className="flex flex-row gap-1.5">
+          <UploadIcon className="object-contain size-5" />
 
-        <p className={cn('text-base', styles.placeholder)}>{placeholder}</p>
+          <p className={cn('text-base', styles.placeholder)}>{placeholder}</p>
+        </div>
 
-        {file && <p className={cn('upload-filename', styles.text)}>{file.filePath}</p>}
+        {file && <p className={cn('mt-1 text-center text-xs', styles.text)}>{file.filePath}</p>}
       </button>
 
       {progress > 0 && progress !== 100 && (
@@ -146,8 +149,7 @@ const FileUpload = ({ type, accept, placeholder, folder, variant, onFileChange, 
         </div>
       )}
 
-      {file &&
-        (type === 'image' ? <IKImage alt={file.filePath || ''} path={file.filePath || ''} width={500} height={300} /> : type === 'video' ? <IKVideo path={file.filePath || ''} controls={true} className="h-96 w-full rounded-xl" /> : null)}
+      {file.filePath && (type === 'image' ? <IKImage alt={file.filePath} path={file.filePath} width={500} height={300} /> : type === 'video' ? <IKVideo path={file.filePath} controls={true} className="h-96 w-full rounded-xl" /> : null)}
     </ImageKitProvider>
   );
 };

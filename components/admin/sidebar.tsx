@@ -52,9 +52,9 @@ const Sidebar = ({ currentUser }: { currentUser: SafeUser }) => {
 
             return (
               <Link href={link.route} key={link.route}>
-                <div className={cn('flex flex-row items-center w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center', isSelected && 'bg-primary shadow-sm')}>
+                <div className={cn('flex flex-row items-center w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center', isSelected && 'bg-blue-400 shadow-sm')}>
                   <div className="relative size-5">
-                    <Image src={link.img} alt="icon" fill className={`${isSelected ? 'brightness-0 invert' : ''}  object-contain`} />
+                    <link.Icon className={`${isSelected ? 'brightness-0 invert' : ''}  object-contain`} />
                   </div>
 
                   <p className={cn(isSelected ? 'text-white' : 'text-primary', 'text-base font-medium max-md:hidden')}>{link.text}</p>
@@ -65,9 +65,9 @@ const Sidebar = ({ currentUser }: { currentUser: SafeUser }) => {
         </div>
       </div>
 
-      <div className="my-8 flex w-full flex-row gap-2 rounded-full border border-amber-200 px-6 py-2 shadow-sm max-md:px-2">
+      <div className="my-8 flex w-full flex-row gap-2 rounded-full border-2 border-blue-200 px-6 py-2 shadow-sm max-md:px-2">
         <Avatar>
-          <AvatarFallback className="bg-amber-100">{getInitials(currentUser?.name || 'IN')}</AvatarFallback>
+          <AvatarFallback className="bg-blue-100">{getInitials(currentUser?.name || 'IN')}</AvatarFallback>
         </Avatar>
         <DropdownMenu>
           <DropdownMenuTrigger>

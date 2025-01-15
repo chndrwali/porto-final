@@ -15,23 +15,24 @@ import FileUpload from '@/components/fileUpload';
 import { createProject } from '@/actions/admin/project';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { ProjectProps } from '@/types';
 
-const ProjectForm = () => {
+const ProjectForm = ({ project }: ProjectProps) => {
   const router = useRouter();
   const form = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
-      title: '',
-      category: undefined,
-      description: '',
-      techStack: [],
-      web: '',
-      repository: '',
-      imageOne: '',
-      imageTwo: '',
-      imageThree: '',
-      imageFour: '',
-      imageFive: '',
+      title: project?.title || '',
+      category: project?.category || undefined,
+      description: project?.description || '',
+      techStack: project?.techStack?.map((stack) => stack.name) || [],
+      web: project?.web || '',
+      repository: project?.repository || '',
+      imageOne: project?.imageOne || '',
+      imageTwo: project?.imageTwo || '',
+      imageThree: project?.imageThree || '',
+      imageFour: project?.imageFour || '',
+      imageFive: project?.imageFive || '',
     },
   });
 
@@ -45,7 +46,7 @@ const ProjectForm = () => {
         variant: 'success',
       });
 
-      router.push(`/admin/content/${result.data.id}`);
+      router.push(`/admin/project/${result.data.id}`);
     } else {
       toast({
         title: 'Gagal',
@@ -57,7 +58,7 @@ const ProjectForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 bg-white p-4 rounded-lg">
         <FormField
           control={form.control}
           name={'title'}
@@ -168,7 +169,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 1</FormLabel>
               <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} value={field.value} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -181,7 +182,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 2</FormLabel>
               <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} value={field.value} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -194,7 +195,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 3</FormLabel>
               <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} value={field.value} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -207,7 +208,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 4</FormLabel>
               <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} value={field.value} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -220,7 +221,7 @@ const ProjectForm = () => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar 5</FormLabel>
               <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="light" onFileChange={field.onChange} value={field.value} />
               </FormControl>
               <FormMessage />
             </FormItem>

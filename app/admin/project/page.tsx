@@ -11,10 +11,10 @@ const Page = () => {
   return (
     <section className="w-full rounded-2xl bg-white p-7">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-xl font-semibold">Semua Konten</h2>
+        <h2 className="text-xl font-semibold">Semua Proyek</h2>
         <Button className="" asChild>
-          <Link href="/admin/content/new" className="text-white">
-            + Buat Konten
+          <Link href="/admin/project/new" className="text-white">
+            + Buat Proyek
           </Link>
         </Button>
       </div>
