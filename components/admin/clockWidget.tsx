@@ -1,9 +1,34 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { ClockIcon, Globe2 } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 const daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+interface TimeZoneData {
+  name: string;
+  timezone: string;
+  flag: string;
+}
+
+const timeZones: TimeZoneData[] = [
+  { name: 'Jakarta', timezone: 'Asia/Jakarta', flag: '🇮🇩' },
+  { name: 'New York', timezone: 'America/New_York', flag: '🇺🇸' },
+  { name: 'London', timezone: 'Europe/London', flag: '🇬🇧' },
+];
+
+const formatTimeForZone = (date: Date, timeZone: string) => {
+  return new Intl.DateTimeFormat('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+    timeZone,
+  }).format(date);
+};
 
 const ClockWidget: React.FC = () => {
   const [time, setTime] = useState(new Date());
@@ -17,48 +42,71 @@ const ClockWidget: React.FC = () => {
 
   const hours = time.getHours().toString().padStart(2, '0');
   const minutes = time.getMinutes().toString().padStart(2, '0');
-  const seconds = time.getSeconds().toString().padStart(2, '0');
+  const seconds = Number(time.getSeconds().toString().padStart(2, '0'));
   const dayOfWeek = daysOfWeek[time.getDay()];
   const day = time.getDate();
   const month = months[time.getMonth()];
   const year = time.getFullYear();
 
   return (
-    <div className="relative bg-blue-300 rounded-lg p-6 shadow-lg overflow-hidden h-[200px]">
-      {/* Time and Date */}
-      <div className="text-left z-20 relative">
-        <h1 className="text-5xl font-bold text-gradientblue">{`${hours} : ${minutes} : ${seconds}`}</h1>
-        <p className="text-2xl mt-2 text-gradientblue">{dayOfWeek}</p>
+    <Card className="group relative overflow-hidden transition-all hover:shadow-lg dark:hover:shadow-primary/25">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/25 via-transparent to-transparent transition-opacity" style={{ zIndex: 0 }} />
+      <CardContent className="relative z-10 p-6">
+        <div className="flex flex-col space-y-6">
+          {/* Local Time Section */}
+          <div className="flex items-start justify-between">
+            <div className="space-y-2">
+              <div className="flex items-baseline space-x-2">
+                <h2 className="text-4xl font-light tracking-tight lg:text-5xl">
+                  {hours}
+                  <span className="mx-1">:</span>
+                  {minutes}
+                </h2>
+                <span className="text-2xl font-light text-muted-foreground transition-opacity" style={{ opacity: seconds % 2 ? 0.5 : 1 }}>
+                  {time.getSeconds().toString().padStart(2, '0')}
+                </span>
+              </div>
+              <div className="space-y-1">
+                <p className="text-lg font-medium tracking-wide text-foreground/80">{dayOfWeek}</p>
+                <p className="text-sm text-muted-foreground">
+                  {day} {month}, {year}
+                </p>
+              </div>
+            </div>
+            <div className="rounded-full bg-primary/10 p-3 transition-colors group-hover:bg-primary/20">
+              <ClockIcon className="h-6 w-6 text-primary" />
+            </div>
+          </div>
 
-        <p className="text-lg mt-1 text-white">{`${day} ${month}, ${year}`}</p>
-      </div>
-
-      {/* SVG Vector 1 - Wrapped in a Div */}
-      <div className="absolute bottom-0 right-0 h-[150px] w-1/2 ">
-        <svg className="h-full w-full" viewBox="0 0 762 192" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M402.14 14.0833C587.211 -21.0881 719.16 17.8242 762 41.6769V192H0V89.2449C56.9338 78.8458 217.069 49.2548 402.14 14.0833Z" fill="url(#paint0_linear_1996_6726)" />
-          <defs>
-            <linearGradient id="paint0_linear_1996_6726" x1="762" y1="174.497" x2="192.561" y2="-192.192" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#004680" />
-              <stop offset="1" stopColor="#00B5D0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
-      {/* SVG Vector 2 - Wrapped in a Div */}
-      <div className="absolute bottom-0 left-0 h-[100px] w-full ">
-        <svg className="h-full w-full" viewBox="0 0 1439 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M679.578 11.0026C330.081 -16.4751 80.9022 13.9252 0 32.5601V150H1439V69.7226C1331.48 61.5983 1029.08 38.4803 679.578 11.0026Z" fill="url(#paint0_linear_1996_6730)" />
-          <defs>
-            <linearGradient id="paint0_linear_1996_6730" x1="0" y1="136.325" x2="444.443" y2="-555.476" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#004680" />
-              <stop offset="1" stopColor="#00B5D0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </div>
+          {/* World Time Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Globe2 className="h-4 w-4" />
+              <span>World Time</span>
+            </div>
+            <Separator className="bg-border/50" />
+            <div className="grid gap-3">
+              {timeZones.map((tz) => (
+                <div key={tz.timezone} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">{tz.flag}</span>
+                    <span className="font-medium text-foreground/80">{tz.name}</span>
+                  </div>
+                  <span className="font-mono text-sm text-muted-foreground">{formatTimeForZone(time, tz.timezone)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </CardContent>
+      <div
+        className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-primary/50 to-primary/10"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, black, transparent)',
+          zIndex: 20,
+        }}
+      />
+    </Card>
   );
 };
 
