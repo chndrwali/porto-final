@@ -1,11 +1,11 @@
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { PlusIcon } from 'lucide-react';
+import TableProject from '@/components/admin/table/tableProject';
 
 export const metadata: Metadata = {
-  title: 'Semua konten',
+  title: 'Semua proyek',
 };
 
 const Page = () => {
@@ -21,7 +21,7 @@ const Page = () => {
       </div>
 
       <div className="mt-7 w-full overflow-hidden">
-        <p>Table</p>
+        <TableProject />
       </div>
     </section>
   );
