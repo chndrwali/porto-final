@@ -16,9 +16,13 @@ import { createProject } from '@/actions/admin/project';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import { ProjectProps } from '@/types';
+import { updateProject } from '@/actions/admin/updateProject';
+import { useState } from 'react';
+import { LoaderIcon } from 'lucide-react';
 
 const ProjectForm = ({ project }: ProjectProps) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
@@ -37,22 +41,42 @@ const ProjectForm = ({ project }: ProjectProps) => {
   });
 
   const onSubmit = async (values: z.infer<typeof projectSchema>) => {
-    const result = await createProject(values);
+    try {
+      setLoading(true); // Set loading ke true saat proses dimulai
 
-    if (result.success) {
-      toast({
-        title: 'Sukses',
-        description: 'Konten berhasil di buat',
-        variant: 'success',
-      });
+      let result;
+      if (project?.id) {
+        // Jika ada ID, lakukan update
+        result = await updateProject(project.id, values);
+      } else {
+        // Jika tidak ada ID, lakukan insert
+        result = await createProject(values);
+      }
 
-      router.push(`/admin/project/${result.data.id}`);
-    } else {
+      if (result.success) {
+        toast({
+          title: 'Sukses',
+          description: project?.id ? 'Proyek berhasil diperbarui' : 'Proyek berhasil dibuat',
+          variant: 'success',
+        });
+
+        router.push(`/admin/project/${result.data.id}`);
+      } else {
+        toast({
+          title: 'Gagal',
+          description: project?.id ? 'Proyek gagal diperbarui' : 'Proyek gagal dibuat',
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
       toast({
-        title: 'Gagal',
-        description: 'Konten gagal di buat',
+        title: 'Error',
+        description: 'Terjadi kesalahan pada sistem. Coba lagi nanti.',
         variant: 'destructive',
       });
+      console.error(error);
+    } finally {
+      setLoading(false); // Set loading ke false setelah proses selesai
     }
   };
 
@@ -66,7 +90,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Judul Project</FormLabel>
               <FormControl>
-                <Input required placeholder="Masukan judul" {...field} />
+                <Input required placeholder="Masukan judul" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -78,7 +102,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Kategori</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loading}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih kategori" />
@@ -104,7 +128,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Deskripsi</FormLabel>
               <FormControl>
-                <Textarea required placeholder="Masukan deskripsi" {...field} />
+                <Textarea required placeholder="Masukan deskripsi" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -126,6 +150,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
                           const newValue = checked ? [...(field.value || []), tech.label] : field.value?.filter((item) => item !== tech.label);
                           field.onChange(newValue);
                         }}
+                        disabled={loading}
                       />
                       <label className="text-sm">{tech.label}</label>
                     </div>
@@ -143,7 +168,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Link</FormLabel>
               <FormControl>
-                <Input required type="url" placeholder="Masukan Link Web" {...field} />
+                <Input required type="url" placeholder="Masukan Link Web" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -156,7 +181,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Repository</FormLabel>
               <FormControl>
-                <Input required type="url" placeholder="Masukan Link Repository" {...field} />
+                <Input required type="url" placeholder="Masukan Link Repository" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -227,7 +252,25 @@ const ProjectForm = ({ project }: ProjectProps) => {
             </FormItem>
           )}
         />
-        <Button type="submit">Daftar</Button>
+        <Button type="submit" effect="shineHover" className="w-full" disabled={loading}>
+          {project ? (
+            loading ? (
+              <>
+                <LoaderIcon className="size-4 animate-spin" />
+                Loading...
+              </>
+            ) : (
+              'Update'
+            )
+          ) : loading ? (
+            <>
+              <LoaderIcon className="size-4 animate-spin" />
+              Loading...
+            </>
+          ) : (
+            'Submit'
+          )}
+        </Button>
       </form>
     </Form>
   );

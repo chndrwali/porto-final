@@ -1,6 +1,7 @@
 import { getProjectById } from '@/actions/getProjectById';
 import ProjectForm from '@/components/admin/form/projectForm';
 import { Button } from '@/components/ui/button';
+import { ArrowLeftIcon } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -24,7 +25,7 @@ const Page = async ({ params }: Props) => {
 
   return (
     <>
-      <Button asChild className="mb-10 w-fit border-2 border-blue-200 bg-white text-xs font-medium text-slate-900 hover:bg-slate-100">
+      <Button asChild variant="outline" effect="expandIcon" icon={ArrowLeftIcon} iconPlacement="left" className="mb-10 w-fit border-2 border-blue-200 text-xs font-medium">
         <Link href="/admin/project">Kembali</Link>
       </Button>
 

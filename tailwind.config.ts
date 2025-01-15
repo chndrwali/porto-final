@@ -55,6 +55,16 @@ export default {
       backgroundImage: {
         pattern: "url('/images/pattern.webp')",
       },
+      keyframes: {
+        shine: {
+          '0%': { backgroundPosition: '200% 0' },
+          '25%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+      },
+      animation: {
+        shine: 'shine 3s ease-out infinite',
+      },
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { PlusIcon } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Semua konten',
@@ -12,9 +13,9 @@ const Page = () => {
     <section className="w-full rounded-2xl bg-white p-7">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">Semua Proyek</h2>
-        <Button className="" asChild>
+        <Button effect="expandIcon" icon={PlusIcon} iconPlacement="left" asChild>
           <Link href="/admin/project/new" className="text-white">
-            + Buat Proyek
+            Buat Proyek
           </Link>
         </Button>
       </div>
