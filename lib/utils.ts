@@ -22,3 +22,13 @@ export function formatDate(date: Date | string | number) {
     minute: '2-digit',
   }).format(new Date(date));
 }
+
+export const calculateAverageRating = (reviews: { rating: number }[]) => {
+  if (!reviews.length) return 0;
+
+  const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
+  const average = sum / reviews.length;
+
+  // Round to 2 decimal places
+  return Number(average.toFixed(2));
+};

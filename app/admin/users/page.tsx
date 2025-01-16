@@ -14,7 +14,7 @@ const Page = async () => {
   return (
     <AnimatedSection className="w-full rounded-2xl bg-white p-7">
       <div className="flex flex-wrap items-center">
-        <h2 className="text-xl font-semibold">Semua Pengguna</h2>
+        <h2 className="text-xl font-semibold">Pengguna</h2>
       </div>
 
       <AnimatedContent className="mt-7 w-full overflow-hidden">

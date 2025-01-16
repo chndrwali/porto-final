@@ -69,12 +69,12 @@ export const adminSideBarLinks = [
   {
     Icon: Users,
     route: '/admin/users',
-    text: 'Semua Pengguna',
+    text: 'Pengguna',
   },
   {
     Icon: FolderKey,
     route: '/admin/project',
-    text: 'Semua Proyek',
+    text: 'Proyek',
   },
   {
     Icon: Laptop,
