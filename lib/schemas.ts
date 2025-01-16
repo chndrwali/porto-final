@@ -95,3 +95,10 @@ export const reviewSchema = z.object({
     message: 'Komentar minimal harus 10 karakter.',
   }),
 });
+
+export const skillSchema = z.object({
+  textOne: z.string().optional(),
+  textTwo: z.string().optional(),
+  textThree: z.string().optional(),
+  textFour: z.string().optional(),
+});

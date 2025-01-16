@@ -1,4 +1,4 @@
-import { Home, Users, Bookmark, FolderKey, Settings, Laptop, TrendingUp } from 'lucide-react';
+import { Home, Users, FolderKey, Laptop, TrendingUp, PenTool } from 'lucide-react';
 
 export const techStack = [
   { label: 'Next.js' },
@@ -87,8 +87,8 @@ export const adminSideBarLinks = [
     text: 'Review',
   },
   {
-    Icon: Settings,
-    route: '/admin/settings',
-    text: 'Pengaturan',
+    Icon: PenTool,
+    route: '/admin/skills',
+    text: 'Skill',
   },
 ];

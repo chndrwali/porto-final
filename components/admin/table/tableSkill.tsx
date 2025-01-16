@@ -1,21 +1,20 @@
 'use client';
 
-import { deleteReview } from '@/actions/admin/deleteReview';
-import AverageRating from '@/components/averageRating';
+import { deleteSkill } from '@/actions/admin/deleteSkill';
 import { Button } from '@/components/ui/button';
 import { useConfirm } from '@/hooks/use-confirm';
 import { toast } from '@/hooks/use-toast';
-import { Review } from '@prisma/client';
-import { ChevronLeft, ChevronRight, LoaderIcon, Star, Trash2 } from 'lucide-react';
+import { Skill } from '@prisma/client';
+import { ChevronLeft, ChevronRight, LoaderIcon, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 interface Props {
-  review: Review[];
+  skill: Skill[];
 }
 
-const TableReview = ({ review }: Props) => {
+const TableSkill = ({ skill }: Props) => {
   const [ConfirmDialog, confirm] = useConfirm('Apakah anda yakin menghapus item ini?', 'Item ini akan di hapus dari list');
-  const [rows, setRows] = useState<Review[]>(review ?? []);
+  const [rows, setRows] = useState<Skill[]>(skill ?? []);
   const [loading, setLoading] = useState<string | null>(null);
   const [pagination, setPagination] = useState({ currentPage: 1, itemsPerPage: 10 });
 
@@ -29,28 +28,28 @@ const TableReview = ({ review }: Props) => {
     setPagination({ ...pagination, currentPage: pageNumber });
   };
 
-  const handleDelete = async (reviewId: string) => {
+  const handleDelete = async (skillId: string) => {
     const ok = await confirm();
     if (ok) {
-      setLoading(reviewId);
+      setLoading(skillId);
       try {
-        const result = await deleteReview(reviewId);
+        const result = await deleteSkill(skillId);
         if (result.success) {
           toast({
             title: 'Berhasil!',
-            description: 'Review berhasil dihapus.',
+            description: 'Skill berhasil dihapus.',
             variant: 'success',
           });
-          setRows((prevRows) => prevRows.filter((review) => review.id !== reviewId));
+          setRows((prevRows) => prevRows.filter((skill) => skill.id !== skillId));
         } else {
           toast({
             title: 'Gagal!',
-            description: result.message || 'Terjadi kesalahan saat menghapus review.',
+            description: result.message || 'Terjadi kesalahan saat menghapus skill.',
             variant: 'destructive',
           });
         }
       } catch (error) {
-        console.error('Error deleting review:', error);
+        console.error('Error deleting skill:', error);
         toast({
           title: 'Gagal!',
           description: 'Terjadi kesalahan, coba lagi nanti.',
@@ -65,32 +64,25 @@ const TableReview = ({ review }: Props) => {
     <div className="space-y-4">
       <ConfirmDialog />
 
-      <AverageRating review={rows} />
-
       <div className="w-full overflow-hidden border rounded-lg shadow-sm">
         <div className="w-full overflow-x-auto">
           <table className="w-full divide-y divide-gray-300">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Reviewer</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Komen</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Email</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Rating</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Text 1</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Text 2</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Text 3</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Text 4</th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Aksi</th>
               </tr>
             </thead>
             <tbody className="bg-white  divide-y divide-gray-200">
               {currentItems.map((row) => (
                 <tr key={row.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.reviewer}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.comment} </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.email || 'Tidak ada'} </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex flex-row items-center gap-2">
-                      <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                      {row.rating}
-                    </div>
-                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.textOne || 'null'}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.textTwo || 'null'} </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.textThree || 'null'} </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.textFour || 'null'}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <Button onClick={() => handleDelete(row.id)} disabled={loading === row.id} variant="destructive" effect="expandIcon" icon={Trash2} iconPlacement="right">
                       {loading === row.id ? (
@@ -171,4 +163,4 @@ const TableReview = ({ review }: Props) => {
   );
 };
 
-export default TableReview;
+export default TableSkill;
