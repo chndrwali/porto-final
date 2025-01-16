@@ -56,6 +56,11 @@ export const projectSchema = z.object({
   imageFive: z.string().optional(),
 });
 
+export const techStackSchema = z.object({
+  title: z.string().min(1, 'Judul harus diisi'),
+  image: z.string().min(1, 'Gambar harus diisi'),
+});
+
 export const blogSchema = z.object({
   title: z.string().min(1, 'Judul harus diisi'),
   description: z.string().refine(
