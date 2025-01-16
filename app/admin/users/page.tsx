@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { getUsers } from '@/actions/admin/getUsers';
 import TableUsers from '@/components/admin/table/tableUsers';
+import { AnimatedSection } from '@/components/admin/animatedSection';
+import { AnimatedContent } from '@/components/admin/animatedContent';
 
 export const metadata: Metadata = {
   title: 'Semua pengguna',
@@ -10,15 +12,15 @@ const Page = async () => {
   const users = await getUsers();
 
   return (
-    <section className="w-full rounded-2xl bg-white p-7">
+    <AnimatedSection className="w-full rounded-2xl bg-white p-7">
       <div className="flex flex-wrap items-center">
         <h2 className="text-xl font-semibold">Semua Pengguna</h2>
       </div>
 
-      <div className="mt-7 w-full overflow-hidden">
+      <AnimatedContent className="mt-7 w-full overflow-hidden">
         <TableUsers users={users} />
-      </div>
-    </section>
+      </AnimatedContent>
+    </AnimatedSection>
   );
 };
 

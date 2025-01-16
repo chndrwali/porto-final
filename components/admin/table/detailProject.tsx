@@ -29,7 +29,7 @@ const DetailProject = ({ project }: ProjectProps) => {
   };
 
   return (
-    <section className="container mx-auto px-4 py-8">
+    <section className="container mx-auto px-4">
       <div className="max-w-6xl mx-auto">
         {/* Project Header */}
         <div className="mb-8">

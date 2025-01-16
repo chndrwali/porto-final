@@ -1,4 +1,5 @@
 import { getProjectById } from '@/actions/getProjectById';
+import { AnimatedSection } from '@/components/admin/animatedSection';
 import ProjectForm from '@/components/admin/form/projectForm';
 import { Button } from '@/components/ui/button';
 import { ArrowLeftIcon } from 'lucide-react';
@@ -29,9 +30,9 @@ const Page = async ({ params }: Props) => {
         <Link href="/admin/project">Kembali</Link>
       </Button>
 
-      <section className="w-full max-w-3xl">
+      <AnimatedSection className="w-full max-w-3xl">
         <ProjectForm project={project} />
-      </section>
+      </AnimatedSection>
     </>
   );
 };
