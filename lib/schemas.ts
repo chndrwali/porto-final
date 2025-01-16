@@ -73,3 +73,25 @@ export const blogSchema = z.object({
   ),
   createdBy: z.string().min(1, 'Pembuat harus diisi'),
 });
+
+export const reviewSchema = z.object({
+  reviewer: z.string().min(2, {
+    message: 'Nama harus terdiri dari minimal 2 karakter.',
+  }),
+  email: z
+    .string()
+    .email({
+      message: 'Silakan masukkan alamat email yang valid.',
+    })
+    .optional()
+    .or(z.literal('')),
+  rating: z.coerce
+    .number()
+    .min(1, {
+      message: 'Silakan pilih rating.',
+    })
+    .max(5),
+  comment: z.string().min(10, {
+    message: 'Komentar minimal harus 10 karakter.',
+  }),
+});

@@ -2,7 +2,6 @@
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useConfirm } from '@/hooks/use-confirm';
 import { toast } from '@/hooks/use-toast';
 import { getInitials } from '@/lib/utils';
@@ -11,6 +10,7 @@ import { ChevronLeft, ChevronRight, LoaderIcon, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import DetailUser from './detailUsers';
 import { deleteUser } from '@/actions/admin/deleteUser';
+import CustomDialog from '@/components/customDialog';
 
 interface Props {
   users: User[];
@@ -19,7 +19,6 @@ interface Props {
 const TableUsers = ({ users }: Props) => {
   const [ConfirmDialog, confirm] = useConfirm('Anda yakin menghapus pengguna ini?', 'Data akan di hapus dari list');
   const [rows, setRows] = useState<User[]>(users || []);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [pagination, setPagination] = useState({ currentPage: 1, itemsPerPage: 10 });
   const [isLoading, setIsLoading] = useState<string | null>(null);
 
@@ -112,19 +111,9 @@ const TableUsers = ({ users }: Props) => {
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRoleColor(row.role)}`}>{row.role}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <Dialog>
-                      <DialogTrigger asChild onClick={() => setSelectedUser(row)}>
-                        <Button type="button" variant="outline">
-                          Detail
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-[900px] w-[90%]">
-                        <DialogHeader>
-                          <DialogTitle>Detail User</DialogTitle>
-                        </DialogHeader>
-                        <div className="max-h-[75vh] overflow-y-auto px-2">{selectedUser && <DetailUser user={selectedUser} />}</div>
-                      </DialogContent>
-                    </Dialog>
+                    <CustomDialog textButton="Detail" titleDialog="Detail User">
+                      <DetailUser user={row} />
+                    </CustomDialog>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center space-x-4 text-sm">
