@@ -28,7 +28,7 @@ const Header = () => {
             <AnimatePresence mode="wait">
               {navigationLinks.map((nav) => (
                 <motion.li key={nav.label} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} whileHover={{ y: -2 }} className="relative group">
-                  <Link href={nav.href} className={cn('text-muted/80 transition-colors group-hover:text-emerald-500', pathname === nav.href && 'text-muted font-medium')}>
+                  <Link href={nav.href} className={cn('text-muted/60 transition-colors group-hover:text-emerald-500', pathname === nav.href && 'text-muted font-medium')}>
                     {nav.label}
                     {pathname === nav.href && <motion.div layoutId="underline" className="absolute left-0 top-full h-[2px] w-full bg-muted group-hover:bg-emerald-500" initial={false} />}
                   </Link>
