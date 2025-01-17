@@ -48,15 +48,20 @@ export const techStack = [
 
 export const navigationLinks = [
   {
-    href: '/library',
-    label: 'Library',
+    href: '/project',
+    label: 'Projects',
   },
-
   {
-    img: '/icons/user.svg',
-    selectedImg: '/icons/user-fill.svg',
-    href: '/my-profile',
-    label: 'My Profile',
+    href: '/techstack',
+    label: 'Tech Stack',
+  },
+  {
+    href: '/testimonial',
+    label: 'Testimonial',
+  },
+  {
+    href: '/contact',
+    label: 'Contact',
   },
 ];
 
