@@ -34,7 +34,7 @@ export const Introduction = () => {
 
           <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }} className="space-y-6">
             <div>
-              <div className="text-green-500 mb-4">INTRODUCTION</div>
+              <div className="text-emerald-500 mb-4">INTRODUCTION</div>
               <h2 className="text-2xl md:text-3xl mb-4">Front-end Developer passionate about tech and personal projects</h2>
               <p className="text-gray-400 leading-relaxed">
                 With around {yearsExperience} years of experience in front-end development, I currently work as a web freelancer. I enjoy creating dynamic user experiences and have experience with a range of technologies including React,
@@ -47,7 +47,7 @@ export const Introduction = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="space-y-6">
                 <div className="flex items-center gap-3">
-                  <Music className="w-5 h-5 text-green-500" />
+                  <Music className="w-5 h-5 text-emerald-500" />
                   <div>
                     <div className="text-sm text-gray-500">Music</div>
                     <div>Pop Punk</div>
@@ -55,7 +55,7 @@ export const Introduction = () => {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <Tv className="w-5 h-5 text-green-500" />
+                  <Tv className="w-5 h-5 text-emerald-500" />
                   <div>
                     <div className="text-sm text-gray-500">TV Show</div>
                     <div>Comedy, Horror, Action</div>
@@ -65,7 +65,7 @@ export const Introduction = () => {
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="space-y-6">
                 <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-green-500" />
+                  <MapPin className="w-5 h-5 text-emerald-500" />
                   <div>
                     <div className="text-sm text-gray-500">City</div>
                     <div>Bandung, ID</div>
@@ -73,7 +73,7 @@ export const Introduction = () => {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <UtensilsCrossed className="w-5 h-5 text-green-500" />
+                  <UtensilsCrossed className="w-5 h-5 text-emerald-500" />
                   <div>
                     <div className="text-sm text-gray-500">Food</div>
                     <div>Rendang</div>
@@ -83,7 +83,7 @@ export const Introduction = () => {
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="space-y-6">
                 <div className="flex items-center gap-3">
-                  <Film className="w-5 h-5 text-green-500" />
+                  <Film className="w-5 h-5 text-emerald-500" />
                   <div>
                     <div className="text-sm text-gray-500">Movie</div>
                     <div>The Raid 2</div>
@@ -91,7 +91,7 @@ export const Introduction = () => {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <Laptop className="w-5 h-5 text-green-500" />
+                  <Laptop className="w-5 h-5 text-emerald-500" />
                   <div>
                     <div className="text-sm text-gray-500">System</div>
                     <div>Windows</div>

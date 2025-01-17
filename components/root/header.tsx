@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <motion.header initial={{ y: -100 }} animate={{ y: 0 }} className="sticky top-0 z-50 font-mono backdrop-blur-md">
-      <div className="container mx-auto my-4 flex justify-between items-center px-4">
+      <div className="container mx-auto py-4 flex justify-between items-center px-4">
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link href="/">
             <Image src="/logo/logo.png" alt="logo" width={40} height={40} className="object-contain" />
@@ -27,10 +27,10 @@ const Header = () => {
           <ul className="flex items-center gap-8">
             <AnimatePresence mode="wait">
               {navigationLinks.map((nav) => (
-                <motion.li key={nav.label} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} whileHover={{ y: -2 }} className="relative">
-                  <Link href={nav.href} className={cn('text-muted/80 transition-colors hover:text-muted', pathname === nav.href && 'text-muted font-medium')}>
+                <motion.li key={nav.label} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} whileHover={{ y: -2 }} className="relative group">
+                  <Link href={nav.href} className={cn('text-muted/80 transition-colors group-hover:text-emerald-500', pathname === nav.href && 'text-muted font-medium')}>
                     {nav.label}
-                    {pathname === nav.href && <motion.div layoutId="underline" className="absolute left-0 top-full h-[2px] w-full bg-muted" initial={false} />}
+                    {pathname === nav.href && <motion.div layoutId="underline" className="absolute left-0 top-full h-[2px] w-full bg-muted group-hover:bg-emerald-500" initial={false} />}
                   </Link>
                 </motion.li>
               ))}
