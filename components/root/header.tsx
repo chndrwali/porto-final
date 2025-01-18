@@ -6,12 +6,18 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { useState } from 'react';
 import { navigationLinks } from '@/lib/constant';
 import { cn } from '@/lib/utils';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 const Header = () => {
   const pathname = usePathname();
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const handleSheetClose = () => {
+    setIsSheetOpen(false);
+  };
 
   return (
     <motion.header initial={{ y: -100 }} animate={{ y: 0 }} className="sticky top-0 z-50 font-mono backdrop-blur-md">
@@ -39,7 +45,7 @@ const Header = () => {
         </nav>
 
         {/* Mobile Navigation */}
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger asChild className="md:hidden">
             <Button variant="ghost" size="icon" className="bg-white">
               <Menu className="h-6 w-6" />
@@ -53,7 +59,7 @@ const Header = () => {
             <nav className="flex flex-col gap-4">
               {navigationLinks.map((nav) => (
                 <motion.div key={nav.label} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} whileHover={{ x: 4 }}>
-                  <Link href={nav.href} className={cn('block py-2 text-lg text-muted-foreground transition-colors hover:text-primary', pathname === nav.href && 'text-primary font-medium')}>
+                  <Link href={nav.href} onClick={handleSheetClose} className={cn('block py-2 text-lg text-muted-foreground transition-colors hover:text-primary', pathname === nav.href && 'text-primary font-medium')}>
                     {nav.label}
                   </Link>
                 </motion.div>

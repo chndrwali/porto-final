@@ -80,7 +80,7 @@ const ProjectSection = ({ project }: Props) => {
         <HoverEffect project={filteredProjects} />
       ) : (
         <div className=" w-full text-center py-8 rounded-md">
-          <p className="text-xl text-gray-400">Tidak ada data</p>
+          <p className="text-xl text-gray-400">No data available</p>
         </div>
       )}
     </div>
