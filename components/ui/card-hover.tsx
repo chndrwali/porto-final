@@ -50,10 +50,17 @@ export const HoverEffect = ({ project, className }: Props) => {
               </AnimatePresence>
             </div>
             <div className="p-4">
+              <div className="flex gap-2 mb-2">
+                {item.techStack.slice(0, 3).map((tech) => (
+                  <span key={tech.id} className="text-xs font-semibold bg-gray-700 text-white px-2 py-1 rounded-md">
+                    {tech.name}
+                  </span>
+                ))}
+              </div>
               <CardTitle>{item.title}</CardTitle>
               <CardDescription className="h-[10vh]">{item.description}</CardDescription>
-              <div className="bg-zinc-800 w-fit p-1 px-2 rounded-md">
-                <span className="text-neutral-100 text-xs">{item.category}</span>
+              <div className="bg-gray-700 w-fit p-1 px-2 rounded-md">
+                <span className="text-white text-xs">{item.category}</span>
               </div>
             </div>
           </Card>
@@ -72,9 +79,7 @@ const Card = ({ className, children, isHovered, link }: { className?: string; ch
           {isHovered && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} transition={{ duration: 0.2 }} className="absolute bottom-4 right-4">
               <Button asChild variant="secondary" className="rounded-full px-4 py-2 text-sm font-medium">
-                <a href={link} target="_blank" rel="noopener noreferrer">
-                  View Project
-                </a>
+                <a href={link}>View Project</a>
               </Button>
             </motion.div>
           )}
