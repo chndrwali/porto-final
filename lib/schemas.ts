@@ -6,6 +6,21 @@ function extractTextFromHTML(html: string) {
   return doc.body.textContent?.trim() || '';
 }
 
+export const emailSchema = z.object({
+  name: z.string().min(1, {
+    message: 'Name is required',
+  }),
+  subject: z.string().min(1, {
+    message: 'Subject is required',
+  }),
+  senderEmail: z.string().email().min(1, {
+    message: 'Email is required',
+  }),
+  message: z.string().min(1, {
+    message: 'Message is required',
+  }),
+});
+
 export const loginSchema = z.object({
   email: z.string().email({
     message: 'Email harus diisi dengan format yang valid.',
