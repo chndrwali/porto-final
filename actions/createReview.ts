@@ -3,6 +3,7 @@
 import * as z from 'zod';
 import { prisma } from '@/lib/db';
 import { reviewSchema } from '@/lib/schemas';
+import { revalidatePath } from 'next/cache';
 
 export const createReview = async (values: z.infer<typeof reviewSchema>) => {
   const validatedFields = reviewSchema.safeParse(values);
@@ -22,6 +23,8 @@ export const createReview = async (values: z.infer<typeof reviewSchema>) => {
         email,
       },
     });
+
+    revalidatePath('/testimonial');
 
     return {
       success: true,

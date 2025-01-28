@@ -2,6 +2,7 @@
 
 import { prisma } from '@/lib/db';
 import { getCurrentUser } from '@/actions/getCurrentUser';
+import { revalidatePath } from 'next/cache';
 
 export const deleteReview = async (id: string) => {
   // Memeriksa pengguna saat ini
@@ -23,6 +24,9 @@ export const deleteReview = async (id: string) => {
     const deletedReview = await prisma.review.delete({
       where: { id },
     });
+
+    revalidatePath('/admin/review');
+    revalidatePath('/testimonial');
 
     return {
       success: true,

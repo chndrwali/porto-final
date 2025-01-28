@@ -67,7 +67,7 @@ const previousRoles: Role[] = [
 
 export const CareerSection = () => {
   return (
-    <div className="text-white p-4 md:p-8">
+    <div className="text-white z-[5000] p-4 md:p-8">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className=" text-white rounded-lg border border-gray-800 p-6 md:p-8">
         <h2 className="text-2xl font-bold mb-6">Experience</h2>
 
