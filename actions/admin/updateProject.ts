@@ -3,6 +3,7 @@
 import * as z from 'zod';
 import { prisma } from '@/lib/db';
 import { projectSchema } from '@/lib/schemas';
+import { revalidatePath } from 'next/cache';
 
 export const updateProject = async (id: string, values: z.infer<typeof projectSchema>) => {
   const validatedFields = projectSchema.safeParse(values);
@@ -53,6 +54,7 @@ export const updateProject = async (id: string, values: z.infer<typeof projectSc
       return updatedProject;
     });
 
+    revalidatePath(`/admin/project`);
     return {
       success: true,
       data: JSON.parse(JSON.stringify(project)),

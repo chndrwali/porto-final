@@ -2,6 +2,7 @@
 
 import { prisma } from '@/lib/db';
 import { getCurrentUser } from '@/actions/getCurrentUser';
+import { revalidatePath } from 'next/cache';
 
 export const deleteProject = async (id: string) => {
   // Memeriksa pengguna saat ini
@@ -22,6 +23,8 @@ export const deleteProject = async (id: string) => {
     const deletedProject = await prisma.project.delete({
       where: { id },
     });
+
+    revalidatePath(`/admin/project`);
 
     return {
       success: true,

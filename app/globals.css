@@ -102,4 +102,7 @@ body {
   .image-animation:hover {
     transform: translateY(-10px); /* Transformasi saat gambar di-hover (bisa disesuaikan) */
   }
+  .heading {
+    @apply font-bold text-4xl md:text-5xl text-center;
+  }
 }

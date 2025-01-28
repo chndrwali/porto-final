@@ -1,75 +1,48 @@
 'use client';
-
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import React, { JSX } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useState } from 'react';
-import { navigationLinks } from '@/lib/constant';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
-const Header = () => {
-  const pathname = usePathname();
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-
-  const handleSheetClose = () => {
-    setIsSheetOpen(false);
-  };
-
+export const Header = ({
+  navItems,
+  className,
+}: {
+  navItems: {
+    name: string;
+    link: string;
+    icon?: JSX.Element;
+  }[];
+  className?: string;
+}) => {
   return (
-    <motion.header initial={{ y: -100 }} animate={{ y: 0 }} className="sticky top-0 z-50 font-mono backdrop-blur-md">
-      <div className="container mx-auto py-4 flex justify-between items-center px-4">
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link href="/">
-            <Image src="/logo/logo.png" alt="logo" width={40} height={40} className="object-contain" />
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 1.2,
+          type: 'spring',
+          bounce: 0.5,
+        }}
+        className={cn(
+          'flex max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-2 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-4',
+          className
+        )}
+        style={{
+          backdropFilter: 'blur(16px) saturate(180%)',
+          backgroundColor: 'rgba(17, 25, 40, 0.75)',
+          borderRadius: '12px',
+          border: '1px solid rgba(255, 255, 255, 0.125)',
+        }}
+      >
+        {navItems.map((navItem: any, idx: number) => (
+          <Link key={`link=${idx}`} href={navItem.link} className={cn('relative dark:text-neutral-50 items-center  flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500')}>
+            <span className="block sm:hidden">{navItem.icon}</span>
+            <span className=" text-sm !cursor-pointer">{navItem.name}</span>
           </Link>
-        </motion.div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:block">
-          <ul className="flex items-center gap-8">
-            <AnimatePresence mode="wait">
-              {navigationLinks.map((nav) => (
-                <motion.li key={nav.label} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} whileHover={{ y: -2 }} className="relative group">
-                  <Link href={nav.href} className={cn('text-muted/60 transition-colors group-hover:text-emerald-500', pathname === nav.href && 'text-muted font-medium')}>
-                    {nav.label}
-                    {pathname === nav.href && <motion.div layoutId="underline" className="absolute left-0 top-full h-[2px] w-full bg-muted group-hover:bg-emerald-500" initial={false} />}
-                  </Link>
-                </motion.li>
-              ))}
-            </AnimatePresence>
-          </ul>
-        </nav>
-
-        {/* Mobile Navigation */}
-        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="bg-white">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-            <SheetHeader className="hidden">
-              <SheetTitle>Nav</SheetTitle>
-            </SheetHeader>
-            <nav className="flex flex-col gap-4">
-              {navigationLinks.map((nav) => (
-                <motion.div key={nav.label} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} whileHover={{ x: 4 }}>
-                  <Link href={nav.href} onClick={handleSheetClose} className={cn('block py-2 text-lg text-muted-foreground transition-colors hover:text-primary', pathname === nav.href && 'text-primary font-medium')}>
-                    {nav.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
-          </SheetContent>
-        </Sheet>
-      </div>
-    </motion.header>
+        ))}
+      </motion.div>
+    </AnimatePresence>
   );
 };
-
-export default Header;

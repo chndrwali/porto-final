@@ -1,11 +1,11 @@
-import { CareerSection } from '@/components/root/career';
-import { Introduction } from '@/components/root/introduction';
+import { GridSection } from '@/components/root/gridSection';
+import HeroSection from '@/components/root/heroSection';
 
 export default function Home() {
   return (
     <>
-      <Introduction />
-      <CareerSection />
+      <HeroSection />
+      <GridSection />
     </>
   );
 }
