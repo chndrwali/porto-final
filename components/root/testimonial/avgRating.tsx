@@ -27,7 +27,7 @@ export const AvgRating = ({ review }: Props) => {
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <div className="rounded-lg border border-gray-800 bg-black p-4 text-white shadow-sm">
+      <div className="rounded-lg border border-gray-800  p-4 text-white shadow-sm">
         <div className="flex flex-row items-center justify-between space-y-0 pb-2">
           <h3 className="text-sm font-medium">Average Rating</h3>
           <Star className="size-4 fill-yellow-400 text-yellow-400" />
@@ -38,7 +38,7 @@ export const AvgRating = ({ review }: Props) => {
         </div>
       </div>
 
-      <div className="rounded-lg border border-gray-800 bg-black p-4 text-white shadow-sm">
+      <div className="rounded-lg border border-gray-800  p-4 text-white shadow-sm">
         <div className="flex flex-row items-center justify-between space-y-0 pb-2">
           <h3 className="text-sm font-medium">Total Reviews</h3>
           <MessageSquare className="size-4" />
@@ -47,7 +47,7 @@ export const AvgRating = ({ review }: Props) => {
       </div>
 
       {/* Rating Distribution */}
-      <div className="rounded-lg border border-gray-800 bg-black p-4 text-white shadow-sm md:col-span-2">
+      <div className="rounded-lg border border-gray-800  p-4 text-white shadow-sm md:col-span-2">
         <h3 className="text-sm font-medium pb-2">Rating Distribution</h3>
         <div className="space-y-2">
           {[5, 4, 3, 2, 1].map((rating) => (

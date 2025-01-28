@@ -26,8 +26,6 @@
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.4",
-    "@react-three/drei": "^9.121.4",
-    "@react-three/fiber": "^8.17.12",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -46,8 +44,6 @@
     "resend": "^4.1.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.172.0",
-    "three-globe": "^2.41.4",
     "zod": "^3.24.1"
   },
   "devDependencies": {
@@ -57,7 +53,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-lottie": "^1.2.10",
-    "@types/three": "^0.172.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
     "postcss": "^8",

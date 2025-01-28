@@ -1,11 +1,15 @@
-import { GridSection } from '@/components/root/gridSection';
+import { getTechStack } from '@/actions/getTech';
+import { CareerSection } from '@/components/root/career';
 import HeroSection from '@/components/root/heroSection';
+import TechStackSection from '@/components/root/techStack/techStackSection';
 
-export default function Home() {
+export default async function Home() {
+  const techStack = await getTechStack();
   return (
     <>
       <HeroSection />
-      <GridSection />
+      <CareerSection />
+      <TechStackSection techStack={techStack} />
     </>
   );
 }
