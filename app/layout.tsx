@@ -35,7 +35,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <SessionProvider session={session}>
         <body className={`${inter.className} antialiased`}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
             {children}
           </ThemeProvider>
           <Toaster />
