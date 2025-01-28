@@ -69,7 +69,7 @@ export const CareerSection = () => {
   return (
     <div className="text-white p-4 md:p-8">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className=" text-white rounded-lg border border-gray-800 p-6 md:p-8">
-        <h2 className="text-2xl font-bold mb-6">Career</h2>
+        <h2 className="text-2xl font-bold mb-6">Experience</h2>
 
         {/* Current Role */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="mb-8">

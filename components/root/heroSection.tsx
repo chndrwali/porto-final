@@ -1,7 +1,7 @@
 import { FaLocationArrow } from 'react-icons/fa6';
-import { Spotlight } from '../ui/spotlight';
-import { TextGenerateEffect } from '../ui/text-generate-effect';
-import MagicButton from '../magicButton';
+import { Spotlight } from '@/components/ui/spotlight';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+import MagicButton from '@/components/magicButton';
 
 const HeroSection = () => {
   return (
@@ -41,7 +41,7 @@ const HeroSection = () => {
            */}
           <TextGenerateEffect words="Transforming Concepts into Seamless User Experiences" className="text-center text-[40px] md:text-5xl lg:text-6xl" />
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">Hi! I&apos;m Candra, a Next.js Developer based in Indonesia.</p>
+          <p className="text-center text-white md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">Hi! I&apos;m Candra, a Next.js Developer based in Indonesia.</p>
 
           <a href="/project">
             <MagicButton title="Show my work" icon={<FaLocationArrow />} position="right" />
