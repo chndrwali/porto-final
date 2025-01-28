@@ -45,7 +45,7 @@ const ProjectSection = ({ project }: Props) => {
   const filteredProjects = filterProjects();
 
   return (
-    <div className="min-h-screen text-white font-mono p-4 md:p-8">
+    <div className="min-h-screen text-white p-4 md:p-8">
       <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl mb-4">
         Projects
       </motion.h1>
@@ -55,12 +55,12 @@ const ProjectSection = ({ project }: Props) => {
       <div className="flex flex-col-reverse md:flex-row justify-between gap-4">
         <div className="flex gap-2">
           {/* Tombol untuk menampilkan semua proyek */}
-          <button className={`px-4 py-2 rounded-md ${selectedCategory === null ? 'bg-emerald-500' : 'bg-gray-700'}`} onClick={() => handleCategoryClick(null)}>
+          <button className={`px-4 py-2 rounded-md ${selectedCategory === null ? 'bg-purple text-black' : 'bg-gray-700'} transition-colors`} onClick={() => handleCategoryClick(null)}>
             All
           </button>
           {/* Tombol untuk menampilkan kategori-kategori proyek */}
           {categories.map((category) => (
-            <button key={category} className={`px-4 py-2 rounded-md ${selectedCategory === category ? 'bg-emerald-500' : 'bg-gray-700'}`} onClick={() => handleCategoryClick(category)}>
+            <button key={category} className={`px-4 py-2 rounded-md ${selectedCategory === category ? 'bg-purple text-black' : 'bg-gray-700'} transition-colors`} onClick={() => handleCategoryClick(category)}>
               {category}
             </button>
           ))}
@@ -71,7 +71,7 @@ const ProjectSection = ({ project }: Props) => {
             placeholder="Search projects..."
             value={searchTerm}
             onChange={handleSearchChange}
-            className="px-4 py-2 rounded-md w-full md:w-72 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-emerald-500"
+            className="px-4 py-2 rounded-md w-full md:w-72 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-purple"
           />
         </div>
       </div>
@@ -79,7 +79,7 @@ const ProjectSection = ({ project }: Props) => {
       {filteredProjects.length > 0 ? (
         <HoverEffect project={filteredProjects} />
       ) : (
-        <div className=" w-full text-center py-8 rounded-md">
+        <div className="w-full text-center py-8 rounded-md">
           <p className="text-xl text-gray-400">No data available</p>
         </div>
       )}

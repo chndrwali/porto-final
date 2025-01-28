@@ -67,7 +67,7 @@ const FormEmail = () => {
               <FormItem className="flex flex-col gap-1">
                 <FormLabel className="text-base font-normal ">Name</FormLabel>
                 <FormControl>
-                  <Input required placeholder="Your name" {...field} disabled={loading} className="bg-black border-gray-800 text-white" />
+                  <Input required placeholder="Your name" {...field} disabled={loading} className="bg-black-100 border-gray-800 text-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -80,7 +80,7 @@ const FormEmail = () => {
               <FormItem className="flex flex-col gap-1">
                 <FormLabel className="text-base font-normal ">Email</FormLabel>
                 <FormControl>
-                  <Input required placeholder="your@email.com" type="email" {...field} disabled={loading} className="bg-black border-gray-800 text-white" />
+                  <Input required placeholder="your@email.com" type="email" {...field} disabled={loading} className="bg-black-100 border-gray-800 text-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,7 +95,7 @@ const FormEmail = () => {
             <FormItem>
               <FormLabel className="text-white">Subject</FormLabel>
               <FormControl>
-                <Input placeholder="What's this about?" className="bg-black border-gray-800 text-white" disabled={loading} {...field} />
+                <Input placeholder="What's this about?" className="bg-black-100 border-gray-800 text-white" disabled={loading} {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -108,13 +108,13 @@ const FormEmail = () => {
             <FormItem>
               <FormLabel className="text-white">Message</FormLabel>
               <FormControl>
-                <Textarea placeholder="Your message..." className="bg-black border-gray-800 text-white min-h-[150px]" disabled={loading} {...field} />
+                <Textarea placeholder="Your message..." className="bg-black-100 border-gray-800 text-white min-h-[150px]" disabled={loading} {...field} />
               </FormControl>
             </FormItem>
           )}
         />
 
-        <Button type="submit" disabled={loading} className="bg-black text-white hover:bg-neutral-900 border border-gray-800">
+        <Button type="submit" disabled={loading} className="bg-black-100 text-white hover:bg-neutral-900 border border-gray-800">
           {loading ? (
             <>
               <LoaderIcon className="size-4 animate-spin" />
