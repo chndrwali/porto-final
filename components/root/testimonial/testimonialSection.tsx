@@ -21,7 +21,7 @@ const TestimonialSection = ({ review }: Props) => {
       <div className="space-y-4">
         <AvgRating review={review} />
         <div className=' className="h-[50vh] md:h-[30rem] rounded-md flex flex-col antialiased  items-center justify-center relative overflow-hidden"'>
-          <InfiniteMovingCards items={review} direction="right" speed="slow" />
+          <InfiniteMovingCards items={review} direction="right" speed="normal" />
         </div>
       </div>
     </div>

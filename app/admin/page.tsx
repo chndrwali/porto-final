@@ -18,7 +18,7 @@ const Page = async () => {
   const [review, user, project, skill, techStack] = await Promise.all([getReview(), getUsers(), getProject(), getSkills(), getTechStack()]);
 
   return (
-    <AnimatedSection className="w-full rounded-2xl bg-white p-7">
+    <AnimatedSection className="w-full rounded-2xl p-7">
       <div className="flex flex-wrap items-center">
         <h2 className="text-xl font-semibold">Dashboard</h2>
       </div>

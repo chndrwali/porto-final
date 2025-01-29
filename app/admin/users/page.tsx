@@ -12,7 +12,7 @@ const Page = async () => {
   const users = await getUsers();
 
   return (
-    <AnimatedSection className="w-full rounded-2xl bg-white p-7">
+    <AnimatedSection className="w-full rounded-2xl p-7">
       <div className="flex flex-wrap items-center">
         <h2 className="text-xl font-semibold">Pengguna</h2>
       </div>

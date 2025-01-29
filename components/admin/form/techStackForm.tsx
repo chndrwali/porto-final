@@ -70,7 +70,7 @@ const TechStackForm = ({ techStack }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 bg-white p-4 rounded-lg">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6  p-4 rounded-lg">
         <FormField
           control={form.control}
           name={'title'}
@@ -91,7 +91,7 @@ const TechStackForm = ({ techStack }: Props) => {
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal ">Gambar</FormLabel>
               <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/techstack" variant="light" onFileChange={field.onChange} value={field.value} />
+                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/techstack" variant="dark" onFileChange={field.onChange} value={field.value} />
               </FormControl>
               <FormMessage />
             </FormItem>

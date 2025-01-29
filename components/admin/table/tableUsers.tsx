@@ -86,27 +86,27 @@ const TableUsers = ({ users }: Props) => {
       <div className="w-full overflow-hidden border rounded-lg shadow-sm">
         <div className="w-full overflow-x-auto ">
           <table className="w-full divide-y divide-gray-300 ">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-800">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Nama User</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Email User</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Role</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Detail</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Aksi</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Nama User</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Email User</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Role</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Detail</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Aksi</th>
               </tr>
             </thead>
-            <tbody className="bg-white  divide-y divide-gray-200 ">
+            <tbody className="bg-gray-800  divide-y divide-gray-400 ">
               {currentItems.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={row.id} className="hover:bg-gray-900 transition-colors">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center gap-3">
                       <Avatar className="cursor-pointer ">
-                        <AvatarFallback className="bg-blue-100">{getInitials(row.name || 'IN')}</AvatarFallback>
+                        <AvatarFallback className="bg-purple">{getInitials(row.name || 'IN')}</AvatarFallback>
                       </Avatar>
-                      <span className="font-medium text-gray-900 ">{row.name}</span>
+                      <span className="font-medium text-gray-300 ">{row.name}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.email}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.email}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRoleColor(row.role)}`}>{row.role}</span>
                   </td>

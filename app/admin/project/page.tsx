@@ -15,11 +15,11 @@ const Page = async () => {
   const project = await getProject();
 
   return (
-    <AnimatedSection className="w-full rounded-2xl bg-white p-7">
+    <AnimatedSection className="w-full rounded-2xl  p-7">
       <AnimatedContent className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">Proyek</h2>
         <Button effect="expandIcon" icon={PlusIcon} iconPlacement="left" asChild>
-          <Link href="/admin/project/new" className="text-white">
+          <Link href="/admin/project/new" className="">
             Buat Proyek
           </Link>
         </Button>

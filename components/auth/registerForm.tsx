@@ -195,7 +195,7 @@ export const RegisterForm = () => {
               'Daftar'
             )}
           </Button>
-          <p className="text-center text-muted text-base font-medium ">
+          <p className="text-center text-muted-foreground text-base font-medium ">
             Sudah punya akun?{' '}
             <Link href="/sign-in" className="font-bold text-amber-100">
               Masuk

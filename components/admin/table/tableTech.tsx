@@ -75,25 +75,25 @@ const TableTech = ({ techStack }: Props) => {
       <div className="w-full overflow-hidden border rounded-lg shadow-sm">
         <div className="w-full overflow-x-auto">
           <table className="w-full divide-y divide-gray-300 ">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-800">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Judul</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Gambar</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Waktu</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Di perbarui</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Aksi</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Judul</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Gambar</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Waktu</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Di perbarui</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Aksi</th>
               </tr>
             </thead>
-            <tbody className="bg-white  divide-y divide-gray-200">
+            <tbody className="bg-gray-800  divide-y divide-gray-200">
               {currentItems.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500"> {row.title}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+                <tr key={row.id} className="hover:bg-gray-950 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300"> {row.title}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">
                     <div className="relative w-[100px] h-[100px] overflow-hidden rounded-lg">
                       <IKImage path={row.image} urlEndpoint={config.env.imageKit.urlEndpoint} alt={row.title} width={100} height={100} className="object-cover w-full h-full" loading="lazy" lqip={{ active: true }} />
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">
                     {' '}
                     {new Date(row.createdAt).toLocaleDateString('id-ID', {
                       year: 'numeric',
@@ -101,7 +101,7 @@ const TableTech = ({ techStack }: Props) => {
                       day: 'numeric',
                     })}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">
                     {new Date(row.updatedAt).toLocaleDateString('id-ID', {
                       year: 'numeric',
                       month: 'long',

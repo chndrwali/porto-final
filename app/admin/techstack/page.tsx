@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const Page = async () => {
   const techStack = await getTechStack();
   return (
-    <AnimatedSection className="w-full rounded-2xl bg-white p-7">
+    <AnimatedSection className="w-full rounded-2xl  p-7">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">Tech Stack</h2>
         <CustomDialog textButton="Tambah Tech" titleDialog="Form">

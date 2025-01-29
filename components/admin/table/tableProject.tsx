@@ -84,18 +84,18 @@ const TableProject = ({ project }: Props) => {
       <div className="w-full overflow-hidden border rounded-lg shadow-sm">
         <div className="w-full overflow-x-auto">
           <table className="w-full divide-y divide-gray-300 ">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-800">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Kategori</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Judul</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Waktu</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Detail</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Aksi</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Kategori</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Judul</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Waktu</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Detail</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Aksi</th>
               </tr>
             </thead>
-            <tbody className="bg-white  divide-y divide-gray-200 ">
+            <tbody className="bg-gray-800  divide-y divide-gray-200 ">
               {currentItems.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={row.id} className="hover:bg-gray-950 transition-colors">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(row.category)}`}>{row.category}</span>
                   </td>

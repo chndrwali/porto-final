@@ -38,7 +38,7 @@ const Sidebar = ({ currentUser }: { currentUser: SafeUser }) => {
   };
 
   return (
-    <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6, type: 'spring', stiffness: 100 }} className="sticky left-0 top-0 flex h-dvh w-[280px] flex-col bg-white">
+    <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6, type: 'spring', stiffness: 100 }} className="sticky left-0 top-0 flex h-dvh w-[280px] flex-col bg-black-100">
       <ConfirmDialog />
 
       {/* Header Section */}
@@ -97,12 +97,12 @@ const Sidebar = ({ currentUser }: { currentUser: SafeUser }) => {
       <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }} className="flex-shrink-0 border-t border-dashed border-primary/20 px-2 py-5">
         <motion.div whileHover={{ scale: 1.02 }} className=" flex w-full flex-row gap-2 rounded-full border-2 border-blue-200 px-6 py-2 shadow-sm max-md:px-2">
           <Avatar>
-            <AvatarFallback className="bg-blue-100">{getInitials(currentUser?.name || 'IN')}</AvatarFallback>
+            <AvatarFallback className="bg-purple">{getInitials(currentUser?.name || 'IN')}</AvatarFallback>
           </Avatar>
           <DropdownMenu>
             <DropdownMenuTrigger>
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex flex-col max-md:hidden">
-                <p className="font-semibold text-neutral-900">{currentUser.name}</p>
+                <p className="font-semibold text-neutral-100">{currentUser.name}</p>
                 <p className="text-xs text-muted-foreground">{currentUser.email}</p>
               </motion.div>
             </DropdownMenuTrigger>

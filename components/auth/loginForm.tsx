@@ -175,7 +175,7 @@ export const LoginForm = () => {
               'Masuk'
             )}
           </Button>
-          <p className="text-center text-muted text-base font-medium ">
+          <p className="text-center text-muted-foreground text-base font-medium ">
             Belum punya akun?{' '}
             <Link href="/sign-up" className="font-bold text-amber-100">
               Buat akun

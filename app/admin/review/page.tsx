@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const Page = async () => {
   const review = await getReview();
   return (
-    <AnimatedSection className="w-full rounded-2xl bg-white p-7">
+    <AnimatedSection className="w-full rounded-2xl p-7">
       <AnimatedContent className="flex flex-wrap items-center ">
         <h2 className="text-xl font-semibold">Review</h2>
       </AnimatedContent>

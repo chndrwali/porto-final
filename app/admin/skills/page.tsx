@@ -9,7 +9,7 @@ const Page = async () => {
   const skill = await getSkills();
 
   return (
-    <AnimatedSection className="w-full rounded-2xl bg-white p-7">
+    <AnimatedSection className="w-full rounded-2xl p-7">
       <AnimatedContent className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">Skill</h2>
         <CustomDialog textButton="Tambah Skill" titleDialog="Form">

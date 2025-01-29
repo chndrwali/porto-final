@@ -22,7 +22,7 @@ const Page = async ({ params }: Props) => {
   if (!project) return redirect('/admin/project');
 
   return (
-    <AnimatedSection className="w-full rounded-2xl bg-white p-7">
+    <AnimatedSection className="w-full rounded-2xl  p-7">
       <Button asChild variant="outline" effect="expandIcon" icon={ArrowLeftIcon} iconPlacement="left" className="mb-10 w-fit border-2 border-blue-200 text-xs font-medium">
         <Link href="/admin/project">Kembali</Link>
       </Button>

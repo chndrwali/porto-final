@@ -21,11 +21,11 @@ const DetailUser = ({ user }: DetailUserProps) => {
     }
   };
   return (
-    <div className=" bg-white rounded-xl shadow-sm transition-all">
+    <div className="rounded-xl shadow-sm transition-all">
       {/* User Information */}
       <div className="flex items-center p-4 ">
         <Avatar className="h-20 w-20">
-          <AvatarFallback className="bg-amber-100">
+          <AvatarFallback className="bg-purple">
             <span className="text-2xl">{getInitials(user.name || 'IN')}</span>
           </AvatarFallback>
         </Avatar>

@@ -70,21 +70,21 @@ const TableReview = ({ review }: Props) => {
       <div className="w-full overflow-hidden border rounded-lg shadow-sm">
         <div className="w-full overflow-x-auto">
           <table className="w-full divide-y divide-gray-300">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-800">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Reviewer</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Komen</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Email</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Rating</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Aksi</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Reviewer</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Komen</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Email</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Rating</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Aksi</th>
               </tr>
             </thead>
-            <tbody className="bg-white  divide-y divide-gray-200">
+            <tbody className="bg-gray-800  divide-y divide-gray-200">
               {currentItems.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.reviewer}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.comment} </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.email || 'Tidak ada'} </td>
+                <tr key={row.id} className="hover:bg-gray-950 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.reviewer}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.comment} </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.email || 'Tidak ada'} </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex flex-row items-center gap-2">
                       <Star className="size-5 fill-yellow-400 text-yellow-400" />
