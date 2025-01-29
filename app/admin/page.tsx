@@ -1,7 +1,7 @@
 import { getUsers } from '@/actions/admin/getUsers';
 import { getProject } from '@/actions/getProject';
 import { getReview } from '@/actions/getReview';
-import { getSkills } from '@/actions/getSkill';
+import { getCareer } from '@/actions/getCareer';
 import { getTechStack } from '@/actions/getTech';
 import { AnimatedContent } from '@/components/admin/animatedContent';
 import { AnimatedSection } from '@/components/admin/animatedSection';
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const Page = async () => {
-  const [review, user, project, skill, techStack] = await Promise.all([getReview(), getUsers(), getProject(), getSkills(), getTechStack()]);
+  const [review, user, project, career, techStack] = await Promise.all([getReview(), getUsers(), getProject(), getCareer(), getTechStack()]);
 
   return (
     <AnimatedSection className="w-full rounded-2xl p-7">
@@ -25,7 +25,7 @@ const Page = async () => {
 
       <AnimatedContent className="mt-7 space-y-4 w-full overflow-hidden">
         <ClockWidget />
-        <StatsDashboard user={user} project={project} skill={skill} techStack={techStack} />
+        <StatsDashboard user={user} project={project} career={career} techStack={techStack} />
         <AverageRating review={review} />
       </AnimatedContent>
     </AnimatedSection>

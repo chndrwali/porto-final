@@ -1,20 +1,20 @@
 'use client';
 
-import { deleteSkill } from '@/actions/admin/deleteSkill';
+import { deleteCareer } from '@/actions/admin/deleteCareer';
 import { Button } from '@/components/ui/button';
 import { useConfirm } from '@/hooks/use-confirm';
 import { toast } from '@/hooks/use-toast';
-import { Skill } from '@prisma/client';
+import { Career } from '@prisma/client';
 import { ChevronLeft, ChevronRight, LoaderIcon, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 interface Props {
-  skill: Skill[];
+  career: Career[];
 }
 
-const TableSkill = ({ skill }: Props) => {
+const TableCareer = ({ career }: Props) => {
   const [ConfirmDialog, confirm] = useConfirm('Apakah anda yakin menghapus item ini?', 'Item ini akan di hapus dari list');
-  const [rows, setRows] = useState<Skill[]>(skill ?? []);
+  const [rows, setRows] = useState<Career[]>(career ?? []);
   const [loading, setLoading] = useState<string | null>(null);
   const [pagination, setPagination] = useState({ currentPage: 1, itemsPerPage: 10 });
 
@@ -28,28 +28,28 @@ const TableSkill = ({ skill }: Props) => {
     setPagination({ ...pagination, currentPage: pageNumber });
   };
 
-  const handleDelete = async (skillId: string) => {
+  const handleDelete = async (careerId: string) => {
     const ok = await confirm();
     if (ok) {
-      setLoading(skillId);
+      setLoading(careerId);
       try {
-        const result = await deleteSkill(skillId);
+        const result = await deleteCareer(careerId);
         if (result.success) {
           toast({
             title: 'Berhasil!',
-            description: 'Skill berhasil dihapus.',
+            description: 'Karir berhasil dihapus.',
             variant: 'success',
           });
-          setRows((prevRows) => prevRows.filter((skill) => skill.id !== skillId));
+          setRows((prevRows) => prevRows.filter((career) => career.id !== careerId));
         } else {
           toast({
             title: 'Gagal!',
-            description: result.message || 'Terjadi kesalahan saat menghapus skill.',
+            description: result.message || 'Terjadi kesalahan saat menghapus karir.',
             variant: 'destructive',
           });
         }
       } catch (error) {
-        console.error('Error deleting skill:', error);
+        console.error('Error deleting karir:', error);
         toast({
           title: 'Gagal!',
           description: 'Terjadi kesalahan, coba lagi nanti.',
@@ -67,22 +67,24 @@ const TableSkill = ({ skill }: Props) => {
       <div className="w-full overflow-hidden border rounded-lg shadow-sm">
         <div className="w-full overflow-x-auto">
           <table className="w-full divide-y divide-gray-300">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-800">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Text 1</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Text 2</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Text 3</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Text 4</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500  uppercase tracking-wider">Aksi</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Judul</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Perusahaan</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Periode</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Tipe Kerja</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Tipe Karir</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Aksi</th>
               </tr>
             </thead>
-            <tbody className="bg-white  divide-y divide-gray-200">
+            <tbody className="bg-gray-800  divide-y divide-gray-200">
               {currentItems.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.textOne || 'null'}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.textTwo || 'null'} </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.textThree || 'null'} </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-500">{row.textFour || 'null'}</td>
+                <tr key={row.id} className="hover:bg-gray-950 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.title}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.company} </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.period} </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.type}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">{row.careerType}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <Button onClick={() => handleDelete(row.id)} disabled={loading === row.id} variant="destructive" effect="expandIcon" icon={Trash2} iconPlacement="right">
                       {loading === row.id ? (
@@ -109,7 +111,7 @@ const TableSkill = ({ skill }: Props) => {
               <button
                 onClick={() => changePage(Math.max(1, pagination.currentPage - 1))}
                 disabled={pagination.currentPage === 1}
-                className="inline-flex items-center px-2 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="inline-flex items-center px-2 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-300 dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
@@ -163,4 +165,4 @@ const TableSkill = ({ skill }: Props) => {
   );
 };
 
-export default TableSkill;
+export default TableCareer;

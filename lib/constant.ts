@@ -93,8 +93,8 @@ export const adminSideBarLinks = [
   },
   {
     Icon: PenTool,
-    route: '/admin/skills',
-    text: 'Skill',
+    route: '/admin/career',
+    text: 'Karir',
   },
 ];
 

@@ -2,8 +2,9 @@
 
 import { prisma } from '@/lib/db';
 import { getCurrentUser } from '@/actions/getCurrentUser';
+import { revalidatePath } from 'next/cache';
 
-export const deleteSkill = async (id: string) => {
+export const deleteCareer = async (id: string) => {
   // Memeriksa pengguna saat ini
   const currentUser = await getCurrentUser();
 
@@ -19,20 +20,22 @@ export const deleteSkill = async (id: string) => {
   }
 
   try {
-    const deletedSkill = await prisma.skill.delete({
+    const deletedCareer = await prisma.career.delete({
       where: { id },
     });
 
+    revalidatePath('/admin/career');
+    revalidatePath('/');
     return {
       success: true,
-      data: deletedSkill,
+      data: deletedCareer,
     };
   } catch (error) {
-    console.error('Error deleting skill:', error);
+    console.error('Error deleting career:', error);
 
     return {
       success: false,
-      message: 'An error occurred while deleting the skill.',
+      message: 'An error occurred while deleting the career.',
     };
   }
 };

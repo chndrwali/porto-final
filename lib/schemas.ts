@@ -111,9 +111,20 @@ export const reviewSchema = z.object({
   }),
 });
 
-export const skillSchema = z.object({
-  textOne: z.string().optional(),
-  textTwo: z.string().optional(),
-  textThree: z.string().optional(),
-  textFour: z.string().optional(),
+export const careerSchema = z.object({
+  title: z.string().min(1, {
+    message: 'Judul harus diisi',
+  }),
+  company: z.string().min(1, {
+    message: 'Perusahaan harus diisi',
+  }),
+  type: z.string().min(1, {
+    message: 'Tipe harus diisi',
+  }),
+  period: z.string().min(1, {
+    message: 'Periode harus diisi',
+  }),
+  careerType: z.enum(['STUDY', 'WORK', 'GRADUATE'], {
+    message: 'Kategori harus dipilih',
+  }),
 });

@@ -3,57 +3,59 @@
 import * as z from 'zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
-import { skillSchema } from '@/lib/schemas';
+import { careerSchema } from '@/lib/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LoaderIcon } from 'lucide-react';
-import { Skill } from '@prisma/client';
+import { Career } from '@prisma/client';
 import { toast } from '@/hooks/use-toast';
-import { updateSkill } from '@/actions/admin/updateSkill';
-import { createSkill } from '@/actions/admin/createSkill';
 import { useRouter } from 'next/navigation';
+import { updateCareer } from '@/actions/admin/updateCareer';
+import { createCareer } from '@/actions/admin/createCareer';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface Props {
-  skill?: Skill;
+  career?: Career;
 }
 
-const SkillForm = ({ skill }: Props) => {
+const CareerForm = ({ career }: Props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const form = useForm<z.infer<typeof skillSchema>>({
-    resolver: zodResolver(skillSchema),
+  const form = useForm<z.infer<typeof careerSchema>>({
+    resolver: zodResolver(careerSchema),
     defaultValues: {
-      textOne: skill?.textOne || '',
-      textTwo: skill?.textTwo || '',
-      textThree: skill?.textThree || '',
-      textFour: skill?.textFour || '',
+      title: '',
+      company: '',
+      period: '',
+      type: '',
+      careerType: undefined,
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof skillSchema>) => {
+  const onSubmit = async (values: z.infer<typeof careerSchema>) => {
     try {
       setLoading(true); // Set loading ke true saat proses dimulai
       let result;
-      if (skill?.id) {
+      if (career?.id) {
         // Jika ada ID, lakukan update
-        result = await updateSkill(skill.id, values);
+        result = await updateCareer(career.id, values);
       } else {
         // Jika tidak ada ID, lakukan insert
-        result = await createSkill(values);
+        result = await createCareer(values);
       }
       if (result.success) {
         toast({
           title: 'Sukses',
-          description: skill?.id ? 'Skill berhasil diperbarui' : 'Skill berhasil dibuat',
+          description: career?.id ? 'Karir berhasil diperbarui' : 'Karir berhasil dibuat',
           variant: 'success',
         });
-        router.push(`/admin/skills`);
+        router.push(`/admin/career`);
       } else {
         toast({
           title: 'Gagal',
-          description: skill?.id ? 'Skill gagal diperbarui' : 'SKill gagal dibuat',
+          description: career?.id ? 'Karir gagal diperbarui' : 'Karir gagal dibuat',
           variant: 'destructive',
         });
       }
@@ -71,13 +73,13 @@ const SkillForm = ({ skill }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 bg-white p-4 rounded-lg">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6  p-4 rounded-lg">
         <FormField
           control={form.control}
-          name={'textOne'}
+          name={'title'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal">Teks 1</FormLabel>
+              <FormLabel className="text-base font-normal">Judul</FormLabel>
               <FormControl>
                 <Input placeholder="Masukan teks" {...field} disabled={loading} />
               </FormControl>
@@ -87,10 +89,10 @@ const SkillForm = ({ skill }: Props) => {
         />
         <FormField
           control={form.control}
-          name={'textTwo'}
+          name={'company'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal">Teks 2</FormLabel>
+              <FormLabel className="text-base font-normal">Perusahaan</FormLabel>
               <FormControl>
                 <Input placeholder="Masukan teks" {...field} disabled={loading} />
               </FormControl>
@@ -100,10 +102,10 @@ const SkillForm = ({ skill }: Props) => {
         />
         <FormField
           control={form.control}
-          name={'textThree'}
+          name={'period'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal">Teks 3</FormLabel>
+              <FormLabel className="text-base font-normal">Periode</FormLabel>
               <FormControl>
                 <Input placeholder="Masukan teks" {...field} disabled={loading} />
               </FormControl>
@@ -113,19 +115,44 @@ const SkillForm = ({ skill }: Props) => {
         />
         <FormField
           control={form.control}
-          name={'textFour'}
+          name={'type'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal">Teks 4</FormLabel>
+              <FormLabel className="text-base font-normal">Tipe Kerja</FormLabel>
               <FormControl>
                 <Input placeholder="Masukan teks" {...field} disabled={loading} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="careerType"
+          render={({ field }) => (
+            <FormItem className="flex flex-col gap-1">
+              <FormLabel className="text-base font-normal ">Tipe Karir</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loading}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Pilih kategori" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Kategori</SelectLabel>
+                    <SelectItem value="STUDY">STUDY</SelectItem>
+                    <SelectItem value="WORK">WORK</SelectItem>
+                    <SelectItem value="GRADUATE">GRADUATE</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" effect="shineHover" className="w-full" disabled={loading}>
-          {skill ? (
+          {career ? (
             loading ? (
               <>
                 <LoaderIcon className="size-4 animate-spin" />
@@ -148,4 +175,4 @@ const SkillForm = ({ skill }: Props) => {
   );
 };
 
-export default SkillForm;
+export default CareerForm;

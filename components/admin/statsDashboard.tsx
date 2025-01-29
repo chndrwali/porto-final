@@ -1,29 +1,29 @@
 import { ProjectWithTech } from '@/types';
-import { Skill, TechStack, User } from '@prisma/client';
+import { Career, TechStack, User } from '@prisma/client';
 import { FolderKey, Laptop, PenTool, Users } from 'lucide-react';
 import { useMemo } from 'react';
 
 interface Props {
   user: User[];
   project: ProjectWithTech[];
-  skill: Skill[];
+  career: Career[];
   techStack: TechStack[];
 }
 
-const StatsDashboard = ({ user, project, skill, techStack }: Props) => {
+const StatsDashboard = ({ user, project, career, techStack }: Props) => {
   const statistics = useMemo(() => {
     const totalUser = user.length;
     const totalProject = project.length;
-    const totalSkill = skill.length;
+    const totalCareer = career.length;
     const totalTech = techStack.length;
 
     return {
       totalUser,
       totalProject,
-      totalSkill,
+      totalCareer,
       totalTech,
     };
-  }, [user, project, skill, techStack]);
+  }, [user, project, career, techStack]);
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -53,10 +53,10 @@ const StatsDashboard = ({ user, project, skill, techStack }: Props) => {
 
       <div className="rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
         <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <h3 className="text-sm font-medium">Total Skill</h3>
+          <h3 className="text-sm font-medium">Total Career</h3>
           <PenTool className="size-4" />
         </div>
-        <p className="text-2xl font-bold">{statistics.totalSkill}</p>
+        <p className="text-2xl font-bold">{statistics.totalCareer}</p>
       </div>
     </div>
   );

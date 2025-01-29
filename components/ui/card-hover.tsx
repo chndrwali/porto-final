@@ -36,7 +36,7 @@ export const HoverEffect = ({ project, className }: Props) => {
               />
             )}
           </AnimatePresence>
-          <Card isHovered={hoveredIndex === idx} link={item.id} className="border bg-black-100 border-gray-800">
+          <Card isHovered={hoveredIndex === idx} link={`/project/${item.id}`} className="border bg-black-100 border-gray-800">
             <div className="relative aspect-video w-full overflow-hidden rounded-xl">
               <IKImage path={item.imageOne} urlEndpoint={config.env.imageKit.urlEndpoint} alt={item.title} width={400} height={300} className="object-cover w-full h-full" loading="lazy" lqip={{ active: true }} />
               <AnimatePresence>
