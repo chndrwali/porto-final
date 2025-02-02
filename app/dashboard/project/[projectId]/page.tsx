@@ -1,11 +1,11 @@
 import { getProjectById } from '@/actions/getProjectById';
-import { AnimatedSection } from '@/components/layout/animatedSection';
 import ProjectForm from '@/components/admin/form/projectForm';
 import { Button } from '@/components/ui/button';
 import { ArrowLeftIcon } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import PageContainer from '@/components/layout/page-container';
+import { AnimatedContent } from '@/components/layout/animatedContent';
 
 interface Props {
   params: Promise<{ projectId: string }>;
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isNew = projectId === 'new';
 
   return {
-    title: isNew ? 'Buat proyek' : 'Update proyek',
+    title: isNew ? 'Create project' : 'Update project',
   };
 }
 
@@ -32,9 +32,9 @@ const Page = async ({ params }: Props) => {
           <Link href="/dashboard/project">Kembali</Link>
         </Button>
 
-        <AnimatedSection className="w-full ">
+        <AnimatedContent className="w-full">
           <ProjectForm project={project} />
-        </AnimatedSection>
+        </AnimatedContent>
       </div>
     </PageContainer>
   );
