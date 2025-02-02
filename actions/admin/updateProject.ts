@@ -54,7 +54,8 @@ export const updateProject = async (id: string, values: z.infer<typeof projectSc
       return updatedProject;
     });
 
-    revalidatePath(`/admin/project`);
+    revalidatePath(`/dashboard/project`);
+    revalidatePath(`/project`);
     return {
       success: true,
       data: JSON.parse(JSON.stringify(project)),

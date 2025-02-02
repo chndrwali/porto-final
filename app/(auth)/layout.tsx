@@ -1,12 +1,12 @@
-import { auth } from '@/auth';
+import { getCurrentUser } from '@/actions/getCurrentUser';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
 
 const AuthLayout = async ({ children }: { children: ReactNode }) => {
-  const session = await auth();
+  const currentUser = await getCurrentUser();
 
-  if (session) redirect('/admin');
+  if (currentUser) redirect('/dashboard');
 
   return (
     <main className="relative flex flex-col-reverse sm:flex-row">

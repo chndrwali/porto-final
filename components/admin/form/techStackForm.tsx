@@ -76,9 +76,9 @@ const TechStackForm = ({ techStack }: Props) => {
           name={'title'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Judul</FormLabel>
+              <FormLabel className="text-base font-normal ">Title</FormLabel>
               <FormControl>
-                <Input required placeholder="Masukan judul" {...field} disabled={loading} />
+                <Input required placeholder="Input title" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -89,9 +89,9 @@ const TechStackForm = ({ techStack }: Props) => {
           name={'image'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Gambar</FormLabel>
+              <FormLabel className="text-base font-normal ">Image</FormLabel>
               <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/techstack" variant="dark" onFileChange={field.onChange} value={field.value} />
+                <FileUpload type="image" accept="image/*" placeholder="Upload Image" folder="admin/techstack" variant="dark" onFileChange={field.onChange} value={field.value} />
               </FormControl>
               <FormMessage />
             </FormItem>

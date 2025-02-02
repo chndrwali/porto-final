@@ -50,7 +50,7 @@ const DetailUser = ({ user }: DetailUserProps) => {
                 <FaClock className="h-5 w-5 text-blue-500 dark:text-blue-400" />
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Dibuat pada</p>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Created At</p>
                 <p className="text-sm text-gray-900 dark:text-white">{formatDate(user.createdAt)}</p>
               </div>
             </div>
@@ -60,17 +60,17 @@ const DetailUser = ({ user }: DetailUserProps) => {
                 <FaShieldAlt className="h-5 w-5 text-blue-500 dark:text-blue-400" />
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Status Akun</p>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Account Status</p>
                 <div className="flex items-center gap-1.5">
                   {user?.emailVerified ? (
                     <>
                       <FaCheckCircle className="h-4 w-4 text-green-500" aria-label="Terverifikasi" />
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">Terverifikasi</p>
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">Verified</p>
                     </>
                   ) : (
                     <>
                       <FaTimesCircle className="h-4 w-4 text-red-500" aria-label="Belum Terverifikasi" />
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">Belum Terverifikasi</p>
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">Not Verified</p>
                     </>
                   )}
                 </div>
@@ -83,7 +83,7 @@ const DetailUser = ({ user }: DetailUserProps) => {
               <FaClock className="h-5 w-5 text-blue-500 dark:text-blue-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Diperbarui pada</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Updated At</p>
               <p className="text-sm text-gray-900 dark:text-white">{formatDate(user.updatedAt)}</p>
             </div>
           </div>

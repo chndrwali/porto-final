@@ -7,15 +7,15 @@ export default {
     extend: {
       colors: {
         black: {
+          '100': '#000319',
+          '200': 'rgba(17, 25, 40, 0.75)',
+          '300': 'rgba(255, 255, 255, 0.125)',
           DEFAULT: '#000',
-          100: '#000319',
-          200: 'rgba(17, 25, 40, 0.75)',
-          300: 'rgba(255, 255, 255, 0.125)',
         },
         white: {
+          '100': '#BEC1DD',
+          '200': '#C1C2D3',
           DEFAULT: '#FFF',
-          100: '#BEC1DD',
-          200: '#C1C2D3',
         },
         blue: {
           '100': '#E4ECFF',
@@ -61,28 +61,53 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
+      },
+      backgroundImage: {
+        pattern: "url('/images/pattern.webp')",
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      backgroundImage: {
-        pattern: "url('/images/pattern.webp')",
-      },
+
       keyframes: {
         shine: {
-          '0%': { backgroundPosition: '200% 0' },
-          '25%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '-200% 0' },
+          '0%': {
+            backgroundPosition: '200% 0',
+          },
+          '25%': {
+            backgroundPosition: '-200% 0',
+          },
+          '100%': {
+            backgroundPosition: '-200% 0',
+          },
         },
         'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
         },
         'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
         },
         spotlight: {
           '0%': {

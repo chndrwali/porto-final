@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/auth';
 import { ThemeProvider } from '@/app/theme-provider';
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -33,14 +34,16 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <SessionProvider session={session}>
-        <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
+        <NextTopLoader showSpinner={false} />
+
+        <SessionProvider session={session}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
             {children}
           </ThemeProvider>
           <Toaster />
-        </body>
-      </SessionProvider>
+        </SessionProvider>
+      </body>
     </html>
   );
 }

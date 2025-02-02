@@ -74,35 +74,35 @@ const TableTech = ({ techStack }: Props) => {
       <ConfirmDialog />
       <div className="w-full overflow-hidden border rounded-lg shadow-sm">
         <div className="w-full overflow-x-auto">
-          <table className="w-full divide-y divide-gray-300 ">
-            <thead className="bg-gray-800">
+          <table className="w-full divide-y divide-foreground">
+            <thead className="bg-background">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Judul</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Gambar</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Waktu</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Di perbarui</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-300  uppercase tracking-wider">Aksi</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-muted-foreground  uppercase tracking-wider">Title</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-muted-foreground  uppercase tracking-wider">Image</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-muted-foreground  uppercase tracking-wider">Time</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-muted-foreground  uppercase tracking-wider">Updated At</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-muted-foreground  uppercase tracking-wider">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-gray-800  divide-y divide-gray-200">
+            <tbody className="bg-background  divide-y divide-foreground">
               {currentItems.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-950 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-300"> {row.title}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">
+                <tr key={row.id} className="hover:bg-gray-200 dark:hover:bg-gray-950 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap text-muted-foreground"> {row.title}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                     <div className="relative w-[100px] h-[100px] overflow-hidden rounded-lg">
                       <IKImage path={row.image} urlEndpoint={config.env.imageKit.urlEndpoint} alt={row.title} width={100} height={100} className="object-cover w-full h-full" loading="lazy" lqip={{ active: true }} />
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">
+                  <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                     {' '}
-                    {new Date(row.createdAt).toLocaleDateString('id-ID', {
+                    {new Date(row.createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric',
                     })}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-300">
-                    {new Date(row.updatedAt).toLocaleDateString('id-ID', {
+                  <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
+                    {new Date(row.updatedAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric',
@@ -119,7 +119,7 @@ const TableTech = ({ techStack }: Props) => {
                             <LoaderIcon className="size-4 animate-spin" />
                           </>
                         ) : (
-                          <>Hapus</>
+                          <>Delete</>
                         )}
                       </Button>
                     </div>
@@ -129,17 +129,17 @@ const TableTech = ({ techStack }: Props) => {
             </tbody>
           </table>
         </div>
-        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-background">
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              Menampilkan {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, totalItems)} dari {totalItems}
+              Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, totalItems)} of {totalItems} entries
             </p>
 
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => changePage(Math.max(1, pagination.currentPage - 1))}
                 disabled={pagination.currentPage === 1}
-                className="inline-flex items-center px-2 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="inline-flex items-center px-2 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-500 dark:text-gray-400 bg-background hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
@@ -155,9 +155,7 @@ const TableTech = ({ techStack }: Props) => {
                         key={pageNumber}
                         onClick={() => changePage(pageNumber)}
                         className={`inline-flex items-center px-3 py-1.5 border text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 transition-colors ${
-                          pagination.currentPage === pageNumber
-                            ? 'bg-blue-600 text-white border-transparent'
-                            : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'
+                          pagination.currentPage === pageNumber ? 'bg-blue-600 text-white border-transparent' : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-background hover:bg-gray-50 dark:hover:bg-gray-700'
                         }`}
                       >
                         {pageNumber}
@@ -181,7 +179,7 @@ const TableTech = ({ techStack }: Props) => {
               <button
                 onClick={() => changePage(Math.min(totalPages, pagination.currentPage + 1))}
                 disabled={pagination.currentPage === totalPages}
-                className="inline-flex items-center px-2 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="inline-flex items-center px-2 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-500 dark:text-gray-400 bg-background hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>

@@ -1,4 +1,4 @@
-import { Home, Users, FolderKey, Laptop, TrendingUp, PenTool } from 'lucide-react';
+import { NavItem } from '@/types';
 
 export const techStack = [
   { label: 'Next.js' },
@@ -65,71 +65,77 @@ export const navItems = [
   },
 ];
 
-export const adminSideBarLinks = [
+export const adminSideBarLink: NavItem[] = [
   {
-    Icon: Home,
-    route: '/admin',
-    text: 'Beranda',
+    title: 'Dashboard',
+    url: '/dashboard',
+    icon: 'dashboard',
+    isActive: false,
+    shortcut: ['d', 'd'],
+    items: [], // Empty array as there are no child items for Dashboard
   },
   {
-    Icon: Users,
-    route: '/admin/users',
-    text: 'Pengguna',
+    title: 'User',
+    url: '/dashboard/users',
+    icon: 'user',
+    shortcut: ['u', 'u'],
+    isActive: false,
+    items: [], // No child items
   },
   {
-    Icon: FolderKey,
-    route: '/admin/project',
-    text: 'Proyek',
+    title: 'Project',
+    url: '/dashboard/project',
+    icon: 'product',
+    shortcut: ['p', 'p'],
+    isActive: false,
+    items: [], // No child items
   },
   {
-    Icon: Laptop,
-    route: '/admin/techstack',
-    text: 'Tech Stack',
+    title: 'Career',
+    url: '/dashboard/career',
+    icon: 'career',
+    shortcut: ['c', 'c'],
+    isActive: false,
+    items: [], // No child items
   },
   {
-    Icon: TrendingUp,
-    route: '/admin/review',
-    text: 'Review',
+    title: 'Review',
+    url: '/dashboard/review',
+    icon: 'review',
+    shortcut: ['r', 'r'],
+    isActive: false,
+    items: [], // No child items
   },
   {
-    Icon: PenTool,
-    route: '/admin/career',
-    text: 'Karir',
+    title: 'Tech Stack',
+    url: '/dashboard/techstack',
+    icon: 'laptop',
+    shortcut: ['t', 't'],
+    isActive: false,
+    items: [], // No child items
   },
-];
+  {
+    title: 'Account',
+    url: '#', // Placeholder as there is no direct link for the parent
+    icon: 'billing',
+    isActive: true,
 
-export const projects = [
-  {
-    id: 1,
-    title: '3D Solar System Planets to Explore',
-    des: 'Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.',
-    img: '/icons/root/p1.svg',
-    iconLists: ['/icons/root/re.svg', '/icons/root/tail.svg', '/icons/root/ts.svg', '/icons/root/three.svg', '/icons/root/fm.svg'],
-    link: '/ui.earth.com',
+    items: [
+      {
+        title: 'Profile',
+        url: '/dashboard/profile',
+        icon: 'userPen',
+        shortcut: ['m', 'm'],
+      },
+    ],
   },
   {
-    id: 2,
-    title: 'Yoom - Video Conferencing App',
-    des: 'Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.',
-    img: '/icons/root/p2.svg',
-    iconLists: ['/icons/root/next.svg', '/icons/root/tail.svg', '/icons/root/ts.svg', '/icons/root/stream.svg', '/icons/root/c.svg'],
-    link: '/ui.yoom.com',
-  },
-  {
-    id: 3,
-    title: 'AI Image SaaS - Canva Application',
-    des: 'A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.',
-    img: '/icons/root/p3.svg',
-    iconLists: ['/icons/root/re.svg', '/icons/root/tail.svg', '/icons/root/ts.svg', '/icons/root/three.svg', '/icons/root/c.svg'],
-    link: '/ui.aiimg.com',
-  },
-  {
-    id: 4,
-    title: 'Animated Apple Iphone 3D Website',
-    des: 'Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..',
-    img: '/icons/root/p4.svg',
-    iconLists: ['/icons/root/next.svg', '/icons/root/tail.svg', '/icons/root/ts.svg', '/icons/root/three.svg', '/icons/root/gsap.svg'],
-    link: '/ui.apple.com',
+    title: 'Kanban',
+    url: '/dashboard/kanban',
+    icon: 'kanban',
+    shortcut: ['k', 'k'],
+    isActive: false,
+    items: [], // No child items
   },
 ];
 

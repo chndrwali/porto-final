@@ -24,7 +24,7 @@ export const deleteProject = async (id: string) => {
       where: { id },
     });
 
-    revalidatePath(`/admin/project`);
+    revalidatePath(`/dashboard/project`);
 
     return {
       success: true,

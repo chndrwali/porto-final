@@ -14,7 +14,7 @@ export const getInitials = (name: string): string =>
     .slice(0, 2);
 
 export function formatDate(date: Date | string | number) {
-  return new Intl.DateTimeFormat('id-ID', {
+  return new Intl.DateTimeFormat('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',

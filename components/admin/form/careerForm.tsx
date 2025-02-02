@@ -79,9 +79,9 @@ const CareerForm = ({ career }: Props) => {
           name={'title'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal">Judul</FormLabel>
+              <FormLabel className="text-base font-normal">Title</FormLabel>
               <FormControl>
-                <Input placeholder="Masukan teks" {...field} disabled={loading} />
+                <Input placeholder="Input title" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -92,9 +92,9 @@ const CareerForm = ({ career }: Props) => {
           name={'company'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal">Perusahaan</FormLabel>
+              <FormLabel className="text-base font-normal">Company</FormLabel>
               <FormControl>
-                <Input placeholder="Masukan teks" {...field} disabled={loading} />
+                <Input placeholder="Input company" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -105,9 +105,9 @@ const CareerForm = ({ career }: Props) => {
           name={'period'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal">Periode</FormLabel>
+              <FormLabel className="text-base font-normal">Period</FormLabel>
               <FormControl>
-                <Input placeholder="Masukan teks" {...field} disabled={loading} />
+                <Input placeholder="now - present" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -118,9 +118,9 @@ const CareerForm = ({ career }: Props) => {
           name={'type'}
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal">Tipe Kerja</FormLabel>
+              <FormLabel className="text-base font-normal">Work Type</FormLabel>
               <FormControl>
-                <Input placeholder="Masukan teks" {...field} disabled={loading} />
+                <Input placeholder="Input text" {...field} disabled={loading} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -131,16 +131,16 @@ const CareerForm = ({ career }: Props) => {
           name="careerType"
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Tipe Karir</FormLabel>
+              <FormLabel className="text-base font-normal ">Career Type</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loading}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Pilih kategori" />
+                    <SelectValue placeholder="Select Category" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Kategori</SelectLabel>
+                    <SelectLabel>Category</SelectLabel>
                     <SelectItem value="STUDY">STUDY</SelectItem>
                     <SelectItem value="WORK">WORK</SelectItem>
                     <SelectItem value="GRADUATE">GRADUATE</SelectItem>

@@ -2,6 +2,7 @@
 
 import { prisma } from '@/lib/db';
 import { getCurrentUser } from '@/actions/getCurrentUser';
+import { revalidatePath } from 'next/cache';
 
 export const deleteTech = async (id: string) => {
   // Memeriksa pengguna saat ini
@@ -22,6 +23,8 @@ export const deleteTech = async (id: string) => {
     const deletedTech = await prisma.techStack.delete({
       where: { id },
     });
+
+    revalidatePath('/dashboard/techstack');
 
     return {
       success: true,

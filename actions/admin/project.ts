@@ -46,7 +46,7 @@ export const createProject = async (values: z.infer<typeof projectSchema>) => {
       return newProject;
     });
 
-    revalidatePath(`/admin/project`);
+    revalidatePath(`/dashboard/project`);
     revalidatePath(`/project`);
 
     return {

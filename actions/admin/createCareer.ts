@@ -24,7 +24,7 @@ export const createCareer = async (values: z.infer<typeof careerSchema>) => {
         careerType,
       },
     });
-    revalidatePath('/admin/career');
+    revalidatePath('/dashboard/career');
 
     return {
       success: true,

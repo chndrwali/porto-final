@@ -19,6 +19,7 @@ import { ProjectProps } from '@/types';
 import { updateProject } from '@/actions/admin/updateProject';
 import { useState } from 'react';
 import { LoaderIcon } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const ProjectForm = ({ project }: ProjectProps) => {
   const router = useRouter();
@@ -81,198 +82,205 @@ const ProjectForm = ({ project }: ProjectProps) => {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-4 rounded-lg">
-        <FormField
-          control={form.control}
-          name={'title'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Judul Project</FormLabel>
-              <FormControl>
-                <Input required placeholder="Masukan judul" {...field} disabled={loading} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="category"
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Kategori</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loading}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Pilih kategori" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Kategori</SelectLabel>
-                    <SelectItem value="FULLSTACK">FULLSTACK</SelectItem>
-                    <SelectItem value="FRONTEND">FRONTEND</SelectItem>
-                    <SelectItem value="BACKEND">BACKEND</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'description'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Deskripsi</FormLabel>
-              <FormControl>
-                <Textarea required placeholder="Masukan deskripsi" {...field} disabled={loading} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'techStack'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">TechStack</FormLabel>
-              <FormControl>
-                <div className="flex flex-wrap gap-2">
-                  {techStack.map((tech) => (
-                    <div key={tech.label} className="flex items-center gap-2">
-                      <Checkbox
-                        checked={field.value?.includes(tech.label)}
-                        onCheckedChange={(checked) => {
-                          const newValue = checked ? [...(field.value || []), tech.label] : field.value?.filter((item) => item !== tech.label);
-                          field.onChange(newValue);
-                        }}
-                        disabled={loading}
-                      />
-                      <label className="text-sm">{tech.label}</label>
+    <Card className="mx-auto w-full">
+      <CardHeader>
+        <CardTitle className="text-left text-2xl font-bold">Create New Project</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-4 rounded-lg">
+            <FormField
+              control={form.control}
+              name={'title'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Title</FormLabel>
+                  <FormControl>
+                    <Input required placeholder="Input title" {...field} disabled={loading} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Category</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loading}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select category" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>category</SelectLabel>
+                        <SelectItem value="FULLSTACK">FULLSTACK</SelectItem>
+                        <SelectItem value="FRONTEND">FRONTEND</SelectItem>
+                        <SelectItem value="BACKEND">BACKEND</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'description'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Description</FormLabel>
+                  <FormControl>
+                    <Textarea required placeholder="Input description" {...field} disabled={loading} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'techStack'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Tech Stack</FormLabel>
+                  <FormControl>
+                    <div className="flex flex-wrap gap-2">
+                      {techStack.map((tech) => (
+                        <div key={tech.label} className="flex items-center gap-2">
+                          <Checkbox
+                            checked={field.value?.includes(tech.label)}
+                            onCheckedChange={(checked) => {
+                              const newValue = checked ? [...(field.value || []), tech.label] : field.value?.filter((item) => item !== tech.label);
+                              field.onChange(newValue);
+                            }}
+                            disabled={loading}
+                          />
+                          <label className="text-sm">{tech.label}</label>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'web'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Link</FormLabel>
-              <FormControl>
-                <Input required type="url" placeholder="Masukan Link Web" {...field} disabled={loading} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'repository'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Repository</FormLabel>
-              <FormControl>
-                <Input required type="url" placeholder="Masukan Link Repository" {...field} disabled={loading} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'imageOne'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Gambar 1</FormLabel>
-              <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'imageTwo'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Gambar 2</FormLabel>
-              <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'imageThree'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Gambar 3</FormLabel>
-              <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'imageFour'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Gambar 4</FormLabel>
-              <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={'imageFive'}
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal ">Gambar 5</FormLabel>
-              <FormControl>
-                <FileUpload type="image" accept="image/*" placeholder="Unggah gambar" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" effect="shineHover" className="w-full" disabled={loading}>
-          {project ? (
-            loading ? (
-              <>
-                <LoaderIcon className="size-4 animate-spin" />
-                Loading...
-              </>
-            ) : (
-              'Update'
-            )
-          ) : loading ? (
-            <>
-              <LoaderIcon className="size-4 animate-spin" />
-              Loading...
-            </>
-          ) : (
-            'Submit'
-          )}
-        </Button>
-      </form>
-    </Form>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'web'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Link</FormLabel>
+                  <FormControl>
+                    <Input required type="url" placeholder="Enter Web Link" {...field} disabled={loading} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'repository'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Repository</FormLabel>
+                  <FormControl>
+                    <Input required type="url" placeholder="Enter Repository" {...field} disabled={loading} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'imageOne'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Images 1</FormLabel>
+                  <FormControl>
+                    <FileUpload type="image" accept="image/*" placeholder="Upload image" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'imageTwo'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Images 2</FormLabel>
+                  <FormControl>
+                    <FileUpload type="image" accept="image/*" placeholder="Upload Image" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'imageThree'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Images 3</FormLabel>
+                  <FormControl>
+                    <FileUpload type="image" accept="image/*" placeholder="Upload Image" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'imageFour'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Images 4</FormLabel>
+                  <FormControl>
+                    <FileUpload type="image" accept="image/*" placeholder="Upload Image" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={'imageFive'}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel className="text-base font-normal ">Images 5</FormLabel>
+                  <FormControl>
+                    <FileUpload type="image" accept="image/*" placeholder="Upload Image" folder="admin/content" variant="dark" onFileChange={field.onChange} value={field.value} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" effect="shineHover" className="w-full" disabled={loading}>
+              {project ? (
+                loading ? (
+                  <>
+                    <LoaderIcon className="size-4 animate-spin" />
+                    Loading...
+                  </>
+                ) : (
+                  'Update'
+                )
+              ) : loading ? (
+                <>
+                  <LoaderIcon className="size-4 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                'Submit'
+              )}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 };
 
