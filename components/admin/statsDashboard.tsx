@@ -29,7 +29,7 @@ const StatsDashboard = ({ user, project, career, techStack }: Props) => {
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <div className="rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
         <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <h3 className="text-sm font-medium">Total Pengguna</h3>
+          <h3 className="text-sm font-medium">Total Users</h3>
           <Users className="size-4" />
         </div>
         <p className="text-2xl font-bold">{statistics.totalUser}</p>
@@ -37,7 +37,7 @@ const StatsDashboard = ({ user, project, career, techStack }: Props) => {
 
       <div className="rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
         <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <h3 className="text-sm font-medium">Total Proyek</h3>
+          <h3 className="text-sm font-medium">Total Projects</h3>
           <FolderKey className="size-4" />
         </div>
         <p className="text-2xl font-bold">{statistics.totalProject}</p>

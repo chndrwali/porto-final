@@ -29,12 +29,12 @@ const AverageRating = ({ review }: Props) => {
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <div className="rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
         <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <h3 className="text-sm font-medium">Rating rata-rata</h3>
+          <h3 className="text-sm font-medium">Average Rating</h3>
           <Star className="size-4 fill-yellow-400 text-yellow-400" />
         </div>
         <div className="flex items-center gap-2">
           <p className="text-2xl font-bold">{statistics.averageRating}</p>
-          <p className="text-xs text-muted-foreground">dari 5</p>
+          <p className="text-xs text-muted-foreground">of 5</p>
         </div>
       </div>
 
@@ -48,7 +48,7 @@ const AverageRating = ({ review }: Props) => {
 
       {/* Rating Distribution */}
       <div className="rounded-lg border bg-card p-4 text-card-foreground shadow-sm md:col-span-2">
-        <h3 className="text-sm font-medium pb-2">Distribusi Rating</h3>
+        <h3 className="text-sm font-medium pb-2">Rating Distribution</h3>
         <div className="space-y-2">
           {[5, 4, 3, 2, 1].map((rating) => (
             <div key={rating} className="flex items-center gap-2">
