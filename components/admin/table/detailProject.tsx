@@ -5,7 +5,6 @@ import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project, TechStackProject } from '@prisma/client';
 import { IKImage } from 'imagekitio-next';
 import config from '@/lib/config';
-import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
@@ -21,6 +20,8 @@ const DetailProject = ({ project }: ProjectProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDialogOpen, setDialogOpen] = useState(false);
 
+  const waUrl = `https://wa.me/628652648201?text=${encodeURIComponent("I'm interested in this repository *" + project.title + '*')}`;
+
   // Filter out null/undefined images and create array of valid images
   const images = [project.imageOne, project.imageTwo, project.imageThree, project.imageFour, project.imageFive].filter(Boolean) as string[];
 
@@ -34,20 +35,6 @@ const DetailProject = ({ project }: ProjectProps) => {
 
   const handleContact = () => {
     setDialogOpen(true);
-    toast({
-      title: 'Repository is private',
-      description: 'Please contact via WhatsApp for access.',
-      action: (
-        <Button
-          variant="outline"
-          onClick={() => {
-            window.open('https://wa.me/6289652648201', '_blank');
-          }}
-        >
-          Open WhatsApp
-        </Button>
-      ),
-    });
   };
 
   return (
@@ -170,7 +157,7 @@ const DetailProject = ({ project }: ProjectProps) => {
           <DialogFooter>
             <Button
               onClick={() => {
-                window.open('https://wa.me/6289652648201', '_blank');
+                window.open(waUrl, '_blank');
                 setDialogOpen(false);
               }}
             >
