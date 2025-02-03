@@ -57,7 +57,7 @@ export const HoverEffect = ({ project, className }: Props) => {
                   </span>
                 ))}
               </div>
-              <CardTitle>{item.title}</CardTitle>
+              <CardTitle className="uppercase">{item.title}</CardTitle>
               <CardDescription className="h-[10vh]">{item.description}</CardDescription>
               <div className="bg-gray-700 w-fit p-1 px-2 rounded-md">
                 <span className="text-white text-xs">{item.category}</span>

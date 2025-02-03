@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { HoverEffect } from '@/components/ui/card-hover';
 import { ProjectWithTech } from '@/types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ProjectCategory } from '@prisma/client';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import SearchButton from './searchButton';
 
 interface Props {
   project: ProjectWithTech[];
@@ -12,34 +14,15 @@ interface Props {
 
 const ProjectSection = ({ project }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300); // Debounce selama 300ms
-
-    return () => {
-      clearTimeout(handler); // Bersihkan timeout jika searchTerm berubah sebelum 300ms
-    };
-  }, [searchTerm]);
 
   const categories = Array.from(new Set(project.map((item) => item.category)));
 
   const filterProjects = () => {
-    const filteredByCategory = selectedCategory ? project.filter((item) => item.category === selectedCategory) : project;
-
-    return filteredByCategory.filter((item) => item.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()));
+    return selectedCategory ? project.filter((item) => item.category === selectedCategory) : project;
   };
 
-  // Handle klik pada tombol kategori
-  const handleCategoryClick = (category: ProjectCategory | null) => {
-    setSelectedCategory(category);
-  };
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value === 'all' ? null : (value as ProjectCategory));
   };
 
   const filteredProjects = filterProjects();
@@ -53,27 +36,20 @@ const ProjectSection = ({ project }: Props) => {
         Explore my portfolio of projects built from scratch
       </motion.div>
       <div className="flex flex-col-reverse md:flex-row justify-between gap-4">
-        <div className="flex gap-2">
-          {/* Tombol untuk menampilkan semua proyek */}
-          <button className={`px-4 py-2 rounded-md ${selectedCategory === null ? 'bg-purple text-black' : 'bg-gray-700'} transition-colors`} onClick={() => handleCategoryClick(null)}>
-            All
-          </button>
-          {/* Tombol untuk menampilkan kategori-kategori proyek */}
-          {categories.map((category) => (
-            <button key={category} className={`px-4 py-2 rounded-md ${selectedCategory === category ? 'bg-purple text-black' : 'bg-gray-700'} transition-colors`} onClick={() => handleCategoryClick(category)}>
-              {category}
-            </button>
-          ))}
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Search projects..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="px-4 py-2 rounded-md w-full md:w-72 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-purple"
-          />
-        </div>
+        <Select onValueChange={handleCategoryChange} defaultValue="all">
+          <SelectTrigger className="w-fit bg-gray-700 border-gray-600">
+            <SelectValue placeholder="Select category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Projects</SelectItem>
+            {categories.map((category) => (
+              <SelectItem key={category} value={category}>
+                {category}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <SearchButton />
       </div>
 
       {filteredProjects.length > 0 ? (
