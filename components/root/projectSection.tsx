@@ -30,7 +30,7 @@ const ProjectSection = ({ project }: Props) => {
 
   return (
     <div className="min-h-screen text-white p-4 md:p-8">
-      <GradientText colors={['#40ffaa', '#4079ff', '#40ffaa', '#4079ff', '#40ffaa']} animationSpeed={3} showBorder={false} className="text-4xl text-left mb-4">
+      <GradientText colors={['#CBACF9', '#4079ff', '#CBACF9', '#4079ff', '#CBACF9']} animationSpeed={3} showBorder={false} className="text-4xl text-left mb-4">
         Projects
       </GradientText>
       <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl mb-4"></motion.h1>

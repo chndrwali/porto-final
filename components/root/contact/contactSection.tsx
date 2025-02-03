@@ -7,7 +7,7 @@ import GradientText from '@/components/gradientText';
 const ContactSection = () => {
   return (
     <div className="min-h-screen text-white font-mono p-4 md:p-8">
-      <GradientText colors={['#40ffaa', '#4079ff', '#40ffaa', '#4079ff', '#40ffaa']} animationSpeed={3} showBorder={false}>
+      <GradientText colors={['#CBACF9', '#4079ff', '#CBACF9', '#4079ff', '#CBACF9']} animationSpeed={3} showBorder={false}>
         <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl mb-4">
           Get in Touch
         </motion.h1>

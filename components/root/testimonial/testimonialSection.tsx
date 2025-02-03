@@ -13,7 +13,7 @@ interface Props {
 const TestimonialSection = ({ review }: Props) => {
   return (
     <div className="text-white p-4 md:p-8">
-      <GradientText colors={['#40ffaa', '#4079ff', '#40ffaa', '#4079ff', '#40ffaa']} animationSpeed={3} showBorder={false}>
+      <GradientText colors={['#CBACF9', '#4079ff', '#CBACF9', '#4079ff', '#CBACF9']} animationSpeed={3} showBorder={false}>
         <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="font-bold text-4xl md:text-5xl mb-4">
           Testimonial
         </motion.span>
