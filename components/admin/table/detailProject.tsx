@@ -20,7 +20,7 @@ const DetailProject = ({ project }: ProjectProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDialogOpen, setDialogOpen] = useState(false);
 
-  const waUrl = `https://wa.me/628652648201?text=${encodeURIComponent("I'm interested in this repository *" + project.title + '*')}`;
+  const waUrl = `https://wa.me/6289652648201?text=${encodeURIComponent("I'm interested in this repository *" + project.title + '*')}`;
 
   // Filter out null/undefined images and create array of valid images
   const images = [project.imageOne, project.imageTwo, project.imageThree, project.imageFour, project.imageFive].filter(Boolean) as string[];
