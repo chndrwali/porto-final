@@ -12,7 +12,7 @@ export const updateProject = async (id: string, values: z.infer<typeof projectSc
     return { error: 'Validasi gagal. Periksa kembali kolom.' };
   }
 
-  const { category, description, imageOne, techStack, title, web, imageFive, imageFour, imageThree, imageTwo, repository } = validatedFields.data;
+  const { category, description, imageOne, techStack, title, web, imageFive, imageFour, isPublicRepo, imageThree, imageTwo, repository } = validatedFields.data;
 
   try {
     const project = await prisma.$transaction(async (prisma) => {
@@ -25,6 +25,7 @@ export const updateProject = async (id: string, values: z.infer<typeof projectSc
           web,
           category,
           repository,
+          isPublicRepo,
           imageOne,
           imageFour,
           imageFive,

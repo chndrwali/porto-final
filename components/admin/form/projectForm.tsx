@@ -1,7 +1,7 @@
 'use client';
 
 import * as z from 'zod';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
 import { projectSchema } from '@/lib/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,6 +20,7 @@ import { updateProject } from '@/actions/admin/updateProject';
 import { useState } from 'react';
 import { LoaderIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
 
 const ProjectForm = ({ project }: ProjectProps) => {
   const router = useRouter();
@@ -33,6 +34,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
       techStack: project?.techStack?.map((stack) => stack.name) || [],
       web: project?.web || '',
       repository: project?.repository || '',
+      isPublicRepo: project?.isPublicRepo || undefined,
       imageOne: project?.imageOne || '',
       imageTwo: project?.imageTwo || '',
       imageThree: project?.imageThree || '',
@@ -61,7 +63,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
           variant: 'success',
         });
 
-        router.push(`/admin/project/${result.data.id}`);
+        router.push(`/dashboard/project/${result.data.id}`);
       } else {
         toast({
           title: 'Gagal',
@@ -84,7 +86,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
   return (
     <Card className="mx-auto w-full">
       <CardHeader>
-        <CardTitle className="text-left text-2xl font-bold">Create New Project</CardTitle>
+        <CardTitle className="text-left text-2xl font-bold">{project ? 'Update project' : 'Create a new project'}</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -120,6 +122,7 @@ const ProjectForm = ({ project }: ProjectProps) => {
                         <SelectItem value="FULLSTACK">FULLSTACK</SelectItem>
                         <SelectItem value="FRONTEND">FRONTEND</SelectItem>
                         <SelectItem value="BACKEND">BACKEND</SelectItem>
+                        <SelectItem value="CERTIFICATE">CERTIFICATE</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -182,17 +185,34 @@ const ProjectForm = ({ project }: ProjectProps) => {
             />
             <FormField
               control={form.control}
-              name={'repository'}
+              name="isPublicRepo"
               render={({ field }) => (
-                <FormItem className="flex flex-col gap-1">
-                  <FormLabel className="text-base font-normal ">Repository</FormLabel>
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                  <div className="space-y-0.5">
+                    <FormLabel className="text-base">Is Public Repository?</FormLabel>
+                    <FormDescription>Enable this option to make the repository publicly accessible. If disabled, users will need to contact you for access.</FormDescription>
+                  </div>
                   <FormControl>
-                    <Input required type="url" placeholder="Enter Repository" {...field} disabled={loading} />
+                    <Switch checked={field.value} onCheckedChange={field.onChange} />
                   </FormControl>
-                  <FormMessage />
                 </FormItem>
               )}
             />
+            {form.watch('isPublicRepo') && (
+              <FormField
+                control={form.control}
+                name={'repository'}
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-1">
+                    <FormLabel className="text-base font-normal ">Repository</FormLabel>
+                    <FormControl>
+                      <Input required type="url" placeholder="Enter Repository" {...field} disabled={loading} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
             <FormField
               control={form.control}
               name={'imageOne'}

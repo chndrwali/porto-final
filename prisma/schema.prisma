@@ -98,6 +98,7 @@ model Project {
   description String
   web String
   repository String?
+  isPublicRepo Boolean @default(false)
   imageOne  String
   imageTwo String?
   imageThree String?
@@ -132,6 +133,7 @@ enum ProjectCategory {
   FULLSTACK
   FRONTEND
   BACKEND
+  CERTIFICATE
 }
 
 model Career {

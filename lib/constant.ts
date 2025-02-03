@@ -44,6 +44,14 @@ export const techStack = [
   { label: 'PNPM' },
   { label: 'Yarn' },
   { label: 'NPM' },
+  { label: 'Dicoding' },
+  { label: 'Alibaba Cloud' },
+  { label: 'Google TensorFlow' },
+  { label: 'Microsoft Certified' },
+  { label: 'Coursera' },
+  { label: 'Udemy' },
+  { label: 'Code Politan' },
+  { label: 'LinkedIn Learning' },
 ];
 
 export const navItems = [

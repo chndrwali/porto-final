@@ -24,7 +24,7 @@ export const deleteCareer = async (id: string) => {
       where: { id },
     });
 
-    revalidatePath('/admin/career');
+    revalidatePath('/dashboard/career');
     revalidatePath('/');
     return {
       success: true,

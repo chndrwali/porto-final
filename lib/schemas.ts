@@ -52,7 +52,7 @@ export const registerSchema = z.object({
 });
 
 export const projectSchema = z.object({
-  category: z.enum(['FULLSTACK', 'FRONTEND', 'BACKEND'], {
+  category: z.enum(['FULLSTACK', 'FRONTEND', 'BACKEND', 'CERTIFICATE'], {
     message: 'Kategori harus dipilih',
   }),
   techStack: z.array(
@@ -64,6 +64,7 @@ export const projectSchema = z.object({
   description: z.string().min(8, 'Deskripsi minimal 8 karakter'),
   web: z.string().min(1, 'Web harus diisi'),
   repository: z.string().optional(),
+  isPublicRepo: z.boolean().default(false),
   imageOne: z.string().min(1, 'Gambar harus diisi'),
   imageTwo: z.string().optional(),
   imageThree: z.string().optional(),

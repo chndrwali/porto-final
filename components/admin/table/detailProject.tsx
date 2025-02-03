@@ -5,6 +5,9 @@ import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project, TechStackProject } from '@prisma/client';
 import { IKImage } from 'imagekitio-next';
 import config from '@/lib/config';
+import { toast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 interface ProjectWithTechStack extends Project {
   techStack: TechStackProject[];
@@ -16,6 +19,7 @@ interface ProjectProps {
 
 const DetailProject = ({ project }: ProjectProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isDialogOpen, setDialogOpen] = useState(false);
 
   // Filter out null/undefined images and create array of valid images
   const images = [project.imageOne, project.imageTwo, project.imageThree, project.imageFour, project.imageFive].filter(Boolean) as string[];
@@ -26,6 +30,24 @@ const DetailProject = ({ project }: ProjectProps) => {
 
   const previousImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleContact = () => {
+    setDialogOpen(true);
+    toast({
+      title: 'Repository is private',
+      description: 'Please contact via WhatsApp for access.',
+      action: (
+        <Button
+          variant="outline"
+          onClick={() => {
+            window.open('https://wa.me/6289652648201', '_blank');
+          }}
+        >
+          Open WhatsApp
+        </Button>
+      ),
+    });
   };
 
   return (
@@ -51,9 +73,9 @@ const DetailProject = ({ project }: ProjectProps) => {
               <ExternalLink className="h-4 w-4" />
               Visit Website
             </a>
-            {project?.repository && (
+            {project.isPublicRepo === true ? (
               <a
-                href={project.repository}
+                href={project.repository ?? ''}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
@@ -61,6 +83,14 @@ const DetailProject = ({ project }: ProjectProps) => {
                 <Github className="h-4 w-4" />
                 View Source
               </a>
+            ) : (
+              <button
+                onClick={handleContact}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
+              >
+                <Github className="h-4 w-4" />
+                Request Access
+              </button>
             )}
           </div>
         </div>
@@ -131,6 +161,24 @@ const DetailProject = ({ project }: ProjectProps) => {
           </dl>
         </div>
       </div>
+      <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Repository Access</DialogTitle>
+            <DialogDescription>This repository is private. Please contact us via WhatsApp to request access.</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              onClick={() => {
+                window.open('https://wa.me/6289652648201', '_blank');
+                setDialogOpen(false);
+              }}
+            >
+              Open WhatsApp
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

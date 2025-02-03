@@ -25,7 +25,7 @@ const Page = async ({ params }: Props) => {
     <PageContainer scrollable={false}>
       <div className="flex flex-1 flex-col space-y-4">
         <Button asChild variant="outline" effect="expandIcon" icon={ArrowLeftIcon} iconPlacement="left" className="mb-10 w-fit border-2 border-purple text-xs font-medium">
-          <Link href="/dashboard/project">Kembali</Link>
+          <Link href="/dashboard/project">Back</Link>
         </Button>
         <AnimatedContent className="flex flex-wrap items-center ">
           <h2 className="text-xl font-semibold">Detail Project</h2>

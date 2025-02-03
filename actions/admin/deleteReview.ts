@@ -25,7 +25,7 @@ export const deleteReview = async (id: string) => {
       where: { id },
     });
 
-    revalidatePath('/admin/review');
+    revalidatePath('/dashboard/review');
     revalidatePath('/testimonial');
 
     return {

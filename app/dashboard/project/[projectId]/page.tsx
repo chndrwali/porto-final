@@ -26,10 +26,10 @@ const Page = async ({ params }: Props) => {
   const project = await getProjectById(projectId);
 
   return (
-    <PageContainer scrollable={true}>
+    <PageContainer scrollable={false}>
       <div className="flex flex-1 flex-col space-y-4">
         <Button asChild variant="outline" effect="expandIcon" icon={ArrowLeftIcon} iconPlacement="left" className="mb-10 w-fit border-2 border-purple text-xs font-medium">
-          <Link href="/dashboard/project">Kembali</Link>
+          <Link href="/dashboard/project">Back</Link>
         </Button>
 
         <AnimatedContent className="w-full">
