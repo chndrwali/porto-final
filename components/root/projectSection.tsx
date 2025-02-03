@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { ProjectCategory } from '@prisma/client';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import SearchButton from './searchButton';
+import GradientText from '../gradientText';
 
 interface Props {
   project: ProjectWithTech[];
@@ -29,9 +30,10 @@ const ProjectSection = ({ project }: Props) => {
 
   return (
     <div className="min-h-screen text-white p-4 md:p-8">
-      <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl mb-4">
+      <GradientText colors={['#40ffaa', '#4079ff', '#40ffaa', '#4079ff', '#40ffaa']} animationSpeed={3} showBorder={false} className="text-4xl text-left mb-4">
         Projects
-      </motion.h1>
+      </GradientText>
+      <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl mb-4"></motion.h1>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-xl text-gray-400 mb-8">
         Explore my portfolio of projects built from scratch
       </motion.div>

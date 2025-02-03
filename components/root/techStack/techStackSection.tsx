@@ -3,6 +3,7 @@
 import { TechStack } from '@prisma/client';
 import { motion } from 'framer-motion';
 import TechCard from './techCard';
+import TrueFocus from '@/components/trueFocus';
 
 interface Props {
   techStack: TechStack[];
@@ -11,9 +12,7 @@ interface Props {
 const TechStackSection = ({ techStack }: Props) => {
   return (
     <div className=" text-white font-mono p-4 md:p-8">
-      <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="font-bold text-4xl md:text-5xl mb-4">
-        Tech Stack
-      </motion.h1>
+      <TrueFocus sentence="Tech Stack" manualMode={false} blurAmount={5} borderColor="purple" animationDuration={1} pauseBetweenAnimations={1} />
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-xl text-gray-400 mb-8">
         Tools and technologies that <span className="text-purple">power my projects.</span>
       </motion.div>

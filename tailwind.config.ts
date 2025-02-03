@@ -165,6 +165,11 @@ export default {
             transform: 'translate(calc(-50% - 0.5rem))',
           },
         },
+        gradient: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
       },
       animation: {
         shine: 'shine 3s ease-out infinite',
@@ -178,6 +183,7 @@ export default {
         fourth: 'moveHorizontal 40s ease infinite',
         fifth: 'moveInCircle 20s ease infinite',
         scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
+        gradient: 'gradient 8s linear infinite',
       },
     },
   },
