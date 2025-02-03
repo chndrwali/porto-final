@@ -10,7 +10,7 @@ const TechCard = ({ tech }: Props) => {
   return (
     <div className="w-[calc(100%/2-1rem)] sm:w-[calc(100%/3-1rem)] md:w-[calc(100%/4-1.5rem)] lg:w-[calc(100%/5-2.5rem)]">
       <div className="flex flex-wrap justify-center text-center group">
-        <div className="px-8 py-3 border-[1.5px] rounded-md border-purple mb-2 shadow-lg">
+        <div className="px-8 py-3 border-[1.5px] rounded-md border-purple bg-purple mb-2 shadow-lg">
           <IKImage
             path={tech.image}
             urlEndpoint={config.env.imageKit.urlEndpoint}

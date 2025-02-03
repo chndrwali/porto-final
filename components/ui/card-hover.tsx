@@ -57,7 +57,7 @@ export const HoverEffect = ({ project, className }: Props) => {
                   </span>
                 ))}
               </div>
-              <CardTitle className="uppercase">{item.title}</CardTitle>
+              <CardTitle className="capitalize">{item.title}</CardTitle>
               <CardDescription className="h-[10vh]">{item.description}</CardDescription>
               <div className="bg-gray-700 w-fit p-1 px-2 rounded-md">
                 <span className="text-white text-xs">{item.category}</span>
@@ -92,5 +92,18 @@ const CardTitle = ({ className, children }: { className?: string; children: Reac
   return <h4 className={cn('text-zinc-100 font-bold  text-xl tracking-wide', className)}>{children}</h4>;
 };
 const CardDescription = ({ className, children }: { className?: string; children: React.ReactNode }) => {
-  return <p className={cn('mt-4 text-zinc-400 tracking-wide leading-relaxed text-sm', className)}>{children}</p>;
+  return (
+    <p
+      className={cn('mt-4 text-zinc-400 tracking-wide leading-relaxed text-sm', className)}
+      style={{
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: '-webkit-box',
+        WebkitLineClamp: 3,
+        WebkitBoxOrient: 'vertical',
+      }}
+    >
+      {children}
+    </p>
+  );
 };

@@ -99,7 +99,9 @@ const TableProject = ({ project }: Props) => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(row.category)}`}>{row.category}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-muted-foreground"> {row.title}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
+                    <div className="w-40 truncate">{row.title}</div>
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-muted-foreground"> {formatDate(row.createdAt)}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <Button asChild variant="outline">

@@ -6,8 +6,8 @@ import { ProjectWithTech } from '@/types';
 import { useState } from 'react';
 import { ProjectCategory } from '@prisma/client';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import SearchButton from './searchButton';
-import GradientText from '../gradientText';
+import SearchButton from '@/components/root/searchButton';
+import GradientText from '@/components/gradientText';
 
 interface Props {
   project: ProjectWithTech[];

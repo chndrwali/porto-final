@@ -48,7 +48,7 @@ const TechStackForm = ({ techStack }: Props) => {
           description: techStack?.id ? 'Tech Stack berhasil diperbarui' : 'Tech Stack berhasil dibuat',
           variant: 'success',
         });
-        router.push(`/admin/techstack`);
+        router.push(`/dashboard/techstack`);
       } else {
         toast({
           title: 'Gagal',
